@@ -29,25 +29,34 @@ module HackerTerm
         init_pair(2, COLOR_WHITE, COLOR_RED)
       end
 
-      @column_headers = config[:column_headers]
       @total_width = cols
       @total_height = lines
       @padding_left = 2
-      @buff = []
-
+      @cols  = ['rank', 'title', 'score', 'comments']
     end
 
     def output_line(line_num, data)
-      setpos line_num, 0
+      setpos(line_num, 0)
       padding_right = @total_width - data.length - @padding_left
+      padding_right = 0 if padding_right < 0
       addstr((" " * @padding_left) + data + (" " * padding_right))
     end
 
-    def draw_header(col_headers)
-      attrset(color_pair(1))
-      setpos(0, 0)
+    def draw_header()
+      attrset color_pair(1)
       output_line(0, "HACKER NEWS (Thanks to http://hndroidapi.appspot.com/)") 
       output_line(1, "Arrow keys to select | Enter to open | F5 to refresh")
+
+      # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
+      # Once obtained, pad out the title column with the any width remaining
+      # A nicer way to do this is always put the title last, and assume last column gets
+      # remaining width. That way we can just loop through our cols, rather than hardcoding
+      # them as per example below. I'm sticking to this because I want the title listed second.
+      width_excl_title = @cols.inject(0) do |width, col| 
+        width += (3 + col.length)
+      end
+      attrset color_pair(2)
+      output_line(2, "rank | title " + " " * (@total_width - width_excl_title) + "| score | comments")
     end
 
     def draw_footer(sorted_by, stats, key_options)
@@ -57,8 +66,8 @@ module HackerTerm
     def draw_item_line(rank, data)
     end
 
-    def show()
-      draw_header(@column_headers)
+    def show(data)
+      draw_header
       getch
       close_screen
     end
