@@ -32,7 +32,13 @@ module HackerTerm
       @total_width = cols
       @total_height = lines
       @padding_left = 2
+      @title_width = 0
       @cols  = ['rank', 'title', 'score', 'comments']
+      @line_num = -1
+    end
+
+    def next_line_num
+      @line_num += 1
     end
 
     def output_line(line_num, data)
@@ -44,8 +50,8 @@ module HackerTerm
 
     def draw_header()
       attrset color_pair(1)
-      output_line(0, "HACKER NEWS (Thanks to http://hndroidapi.appspot.com/)") 
-      output_line(1, "Arrow keys to select | Enter to open | F5 to refresh")
+      output_line(next_line_num, "HACKER NEWS (Thanks to http://hndroidapi.appspot.com/)") 
+      output_line(next_line_num, "Arrow keys to select | Enter to open | F5 to refresh")
 
       # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
       # Once obtained, pad out the title column with the any width remaining
@@ -56,7 +62,8 @@ module HackerTerm
         width += (3 + col.length)
       end
       attrset color_pair(2)
-      output_line(2, "rank | title " + " " * (@total_width - width_excl_title) + "| score | comments")
+      @title_width = @total_width - width_excl_title + 'title'.length
+      output_line(next_line_num, "rank | title " + " " * (@total_width - width_excl_title) + "| score | comments")
     end
 
     def draw_footer(sorted_by, stats, key_options)
@@ -64,10 +71,28 @@ module HackerTerm
     end
 
     def draw_item_line(rank, data)
+      p data
+      attrset color_pair(2)
+      begin
+        unless data.has_key? 'score'
+          data['score'] = '0x'
+        end
+
+        unless data.has_key? 'comments'
+          data['comments'] = '0x'
+        end
+        formatted = sprintf("%4d | %#{@title_width}d | %5d | %8d", rank, data['title'], data['score'], data['comments'])
+        output_line(next_line_num, formatted)
+      rescue => ex
+        p "error: #{ex.to_s}"
+      end
+      # if data.title > @title_width
+      # end
     end
 
     def show(data)
-      draw_header
+      # draw_header
+      data.each_index { |i| draw_item_line(i + 1, data.fetch(i))}
       getch
       close_screen
     end
