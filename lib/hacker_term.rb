@@ -69,8 +69,11 @@ module HackerTerm
     end
 
     def draw_item_line(rank, data)
-      p data
-      attrset color_pair(2)
+      comments = '-'
+      score = '-'
+
+      attrset color_pair(0)
+
       begin
         unless data.has_key? 'score'
           data['score'] = '0x'
@@ -79,7 +82,13 @@ module HackerTerm
         unless data.has_key? 'comments'
           data['comments'] = '0x'
         end
-        formatted = sprintf("%4d | %#{@title_width}d | %5d | %8d", rank, data['title'], data['score'], data['comments'])
+
+        comments = data['comments'].split(' ').first if data['comments'].include? ''
+        score = data['score'].split(' ').first if data['score'].include? ''
+
+        formatted = sprintf("%4s | %-#{@title_width}s | %5s | %8s", 
+          rank, data['title'], score, comments)
+        
         output_line(next_line_num, formatted)
       rescue => ex
         p "error: #{ex.to_s}"
@@ -89,7 +98,7 @@ module HackerTerm
     end
 
     def show(data)
-      # draw_header
+      draw_header
       data.each_index { |i| draw_item_line(i + 1, data.fetch(i))}
       getch
       close_screen
