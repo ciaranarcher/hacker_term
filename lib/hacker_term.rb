@@ -2,14 +2,14 @@ require 'curses'
 
 # HACKER NEWS
 # Arrow keys to select | Enter to open | F5 to refresh
-# rank | title                   | url         | score | comments
-# 1    | xxxxxxxxxxxxxxxxxxxx... | xxxxxxxx... | 230   | 8
-# 2    | xxxxxxxxxxxxxxxxxxxx... | xxxxxxxx... | 29    | 0
-# 3    | xxxxxxxxxxxxxxxxxxxx... | xxxxxxxx... | 2     | 2
-# 4    | xxxxxxxxxxxxxxxxxxxx... | xxxxxxxx... | 45    | 6
-# 5    | xxxxxxxxxxxxxxxxxxxx... | xxxxxxxx... | 25    | 1
-# 6    | xxxxxxxxxxxxxxxxxxxx... | xxxxxxxx... | 98    | 80
-# 7    | xxxxxxxxxxxxxxxxxxxx... | xxxxxxxx... | 280   | 5
+# rank | title                   | score | comments
+# 1    | xxxxxxxxxxxxxxxxxxxx... | 230   | 8
+# 2    | xxxxxxxxxxxxxxxxxxxx... | 29    | 0
+# 3    | xxxxxxxxxxxxxxxxxxxx... | 2     | 2
+# 4    | xxxxxxxxxxxxxxxxxxxx... | 45    | 6
+# 5    | xxxxxxxxxxxxxxxxxxxx... | 25    | 1
+# 6    | xxxxxxxxxxxxxxxxxxxx... | 98    | 80
+# 7    | xxxxxxxxxxxxxxxxxxxx... | 280   | 5
 # Sorted by: score | Mean: x | Median: x | Mode x 
 # Q:quit | R:sort/rank | T: sort/title | S:sort/score | C: sort/ comment  
 
@@ -17,8 +17,6 @@ module HackerTerm
   class UI
 
     include Curses
-
-    
 
     def initialize(config={})
       if can_change_color?
@@ -98,5 +96,3 @@ module HackerTerm
     end
   end
 end
-
-
