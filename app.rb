@@ -1,7 +1,6 @@
 $:.unshift(File.dirname(__FILE__) + '/lib')
 
 require 'hacker_term'
-require 'json'
 
 data = JSON.parse(File.read './data/data.json')['items']
 

@@ -1,4 +1,5 @@
 require 'curses'
+require 'json'
 
 # HACKER NEWS
 # Arrow keys to select | Enter to open | F5 to refresh
@@ -15,7 +16,6 @@ require 'curses'
 
 module HackerTerm
   class UI
-
     include Curses
 
     def initialize(config={})
@@ -42,7 +42,7 @@ module HackerTerm
     def output_line(line_num, data)
       setpos(line_num, 0)
       padding_right = @total_width - data.length - @padding_left
-      padding_right = 0 if padding_right < 0
+      padding_right = 0 if padding_right < 0  
       addstr((" " * @padding_left) + data + (" " * padding_right))
     end
 
@@ -86,15 +86,13 @@ module HackerTerm
         comments = data['comments'].split(' ').first if data['comments'].include? ''
         score = data['score'].split(' ').first if data['score'].include? ''
 
-        formatted = sprintf("%4s | %-#{@title_width}s | %5s | %8s", 
+        formatted = sprintf("%4s | %-   #{@title_width}s | %5s | %8s", 
           rank, data['title'], score, comments)
         
         output_line(next_line_num, formatted)
       rescue => ex
         p "error: #{ex.to_s}"
       end
-      # if data.title > @title_width
-      # end
     end
 
     def show(data)
@@ -102,6 +100,22 @@ module HackerTerm
       data.each_index { |i| draw_item_line(i + 1, data.fetch(i))}
       getch
       close_screen
+    end
+  end
+
+  class PageData
+    attr_reader :data
+
+    def initialize(data)
+      @data = JSON.parse(data)['items']
+      sanitize!
+    end
+
+    private
+
+    def sanitize!
+      # Here we're looking to fix nodes with missing/incorrect data
+
     end
   end
 end
