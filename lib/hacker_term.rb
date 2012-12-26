@@ -15,7 +15,7 @@ require 'json'
 # Q:quit | R:sort/rank | T: sort/title | S:sort/score | C: sort/ comment  
 
 
-# Controversial mokeypatch of String class so it can tell us if a string is a number
+# Controversial monkeypatch of String class so it can tell us if a string is a number
 class String
   def is_num?
     self =~ /^[-+]?[0-9]*\.?[0-9]+$/
@@ -105,17 +105,27 @@ module HackerTerm
   end
 
   class PageData
-    attr_reader :data, :mean_score, :median_score
+    attr_reader :data, :mean_score, :median_score, :mode_score
 
     def initialize(data)
       @data = JSON.parse(data)['items']
+      
       add_missing_keys!
       format_numbers!
+      
       calculate_mean_score
       calculate_median_score
+      calculate_mode_score
     end
 
     private
+
+    def calculate_mode_score
+      freq = @data.inject(Hash.new(0)) { |h,v| h[v['score'].to_f] += 1; h }
+      # Call sort_by on hash to create an array which each contains two elements, the key and value
+      # So we grab the last item, and return the 'key' from our original hash
+      @mode_score = freq.sort_by { |k, v| v }.last.first
+    end
 
     def calculate_mean_score
       @mean_score = @data.inject(0.0) { |sum, el| sum + el['score'].to_f } / @data.size

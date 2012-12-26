@@ -63,7 +63,8 @@ module HackerTerm
         @page_data.median_score.should == 131
       end
 
-      pending 'provides a mode' do
+      it 'provides a mode' do
+        @page_data.mode_score.should == 0
       end
     end
   end
