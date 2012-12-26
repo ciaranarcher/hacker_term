@@ -33,8 +33,20 @@ module HackerTerm
         @pd.data.first.should have_key 'comments'
       end
 
-      it 'formats score node as a number' do
-        @pd.data.last['score'].is_num?.should be_true
+      it 'formats score node as a number when the node didn\'t exist' do
+        @pd.data.first['score'].should == '0'
+      end
+
+      it 'formats score node as a number when text is present' do
+        @pd.data.last['score'].should == '260'
+      end
+
+      it 'formats comments node as a number when the node didn\'t exist' do
+        @pd.data.first['comments'].should == '0'
+      end
+
+      it 'formats comments node as a number when text is present' do
+        @pd.data.last['comments'].should == '122'
       end
 
     end

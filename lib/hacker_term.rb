@@ -77,23 +77,14 @@ module HackerTerm
     end
 
     def draw_item_line(rank, data)
-      comments = '-'
-      score = '-'
-      title = data['title']
-
       attrset color_pair(0)
 
       begin
-        comments = data['comments'].split(' ').first if data['comments'].include? ''
-        comments = '0' unless comments.is_num?
-        score = data['score'].split(' ').first if data['score'].include? ''
-        score = '0' unless score.is_num?
-
         # Truncate if too long
         title = truncate_line! data
 
         # Format and output
-        formatted = sprintf("%4s | %-#{@title_width}s | %5s | %8s", rank, title, score, comments)
+        formatted = sprintf("%4s | %-#{@title_width}s | %5s | %8s", rank, title, data['score'], data['comments'])
         output_line(next_line_num, formatted)
       rescue => ex
         p "error: #{ex.to_s}"
@@ -139,9 +130,12 @@ module HackerTerm
 
     def format_numbers!
       # Assumption here is a format like '10 comments' or '35 points'
+      # Also chucks anything left over that isn't a number
       @data.each do |item|
         item['comments'] = item['comments'].split(' ').first if item['comments'].include? ' '
+        item['comments'] = '0' unless item['comments'].is_num?
         item['score'] = item['score'].split(' ').first if item['score'].include? ' '
+        item['score'] = '0' unless item['score'].is_num?
       end
     end
   end
