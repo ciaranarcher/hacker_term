@@ -1,18 +1,21 @@
 require 'hacker_term'
 
 module HackerTerm
-
   describe PageData do
-    it 'adds missing nodes' do
-      data = '{"items":[{
-           "title":"NextId",
-           "url":"/news2",
-           "description":"hn next id news2 "
-        }]
-      }'
+    describe 'replace missing nodes' do
+      before(:each) do
+        @data = '{"items":[{
+             "title":"NextId",
+             "url":"/news2",
+             "description":"hn next id news2 "
+          }]
+        }'
+      end
 
-      pd = PageData.new data
-      pd.data.first.should have_key 'score'
+      it 'adds score node' do
+        pd = PageData.new @data
+        pd.data.first.should have_key 'score'
+      end
     end
   end
 end
