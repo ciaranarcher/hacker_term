@@ -114,10 +114,13 @@ module HackerTerm
     private
 
     def add_missing_keys!
-      # Here we're looking to fix nodes with missing/incorrect data
       @data.each do |item|
         unless item.has_key? 'score'
           item['score'] = '0'
+        end
+
+        unless item.has_key? 'comments'
+          item['comments'] = '0'
         end
       end
     end

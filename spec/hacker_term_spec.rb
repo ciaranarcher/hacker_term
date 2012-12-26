@@ -17,7 +17,8 @@ module HackerTerm
         @pd.data.first.should have_key 'score'
       end
 
-      pending 'adds comments node' do
+      it 'adds comments node' do
+        @pd.data.first.should have_key 'comments'
       end
     end
   end
