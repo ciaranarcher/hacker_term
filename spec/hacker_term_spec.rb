@@ -12,7 +12,7 @@ module HackerTerm
       }'
 
       pd = PageData.new data
-      pd.data.first.has_key? 'score'
+      pd.data.first.should have_key 'score'
     end
   end
 end

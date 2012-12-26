@@ -108,14 +108,18 @@ module HackerTerm
 
     def initialize(data)
       @data = JSON.parse(data)['items']
-      sanitize!
+      add_missing_keys!
     end
 
     private
 
-    def sanitize!
+    def add_missing_keys!
       # Here we're looking to fix nodes with missing/incorrect data
-
+      @data.each do |item|
+        unless item.has_key? 'score'
+          item['score'] = '0'
+        end
+      end
     end
   end
 end
