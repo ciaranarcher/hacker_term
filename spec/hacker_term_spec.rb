@@ -55,8 +55,8 @@ module HackerTerm
         @page_data = HackerTerm::PageData.new File.read './data/data.json' 
       end
 
-      pending 'provides a mean' do
-
+      it 'provides a mean' do
+        @page_data.mean_score.should == 194.19354838709677
       end
 
       pending 'provides a median' do

@@ -105,15 +105,20 @@ module HackerTerm
   end
 
   class PageData
-    attr_reader :data
+    attr_reader :data, :mean_score
 
     def initialize(data)
       @data = JSON.parse(data)['items']
       add_missing_keys!
       format_numbers!
+      calculate_mean_score
     end
 
     private
+
+    def calculate_mean_score
+      @mean_score = @data.inject(0.0) { |sum, el| sum + el['score'].to_f } / @data.size
+    end
 
     def add_missing_keys!
       # Here we're looking to fix nodes with missing/incorrect data
