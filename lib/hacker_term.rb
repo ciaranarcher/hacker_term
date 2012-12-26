@@ -119,6 +119,7 @@ module HackerTerm
     def initialize(data)
       @data = JSON.parse(data)['items']
       add_missing_keys!
+      format_numbers!
     end
 
     private
@@ -133,6 +134,14 @@ module HackerTerm
         unless item.has_key? 'comments'
           item['comments'] = '0'
         end
+      end
+    end
+
+    def format_numbers!
+      # Assumption here is a format like '10 comments' or '35 points'
+      @data.each do |item|
+        item['comments'] = item['comments'].split(' ').first if item['comments'].include? ' '
+        item['score'] = item['score'].split(' ').first if item['score'].include? ' '
       end
     end
   end
