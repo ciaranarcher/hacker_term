@@ -75,14 +75,6 @@ module HackerTerm
       attrset color_pair(0)
 
       begin
-        unless data.has_key? 'score'
-          data['score'] = '0x'
-        end
-
-        unless data.has_key? 'comments'
-          data['comments'] = '0x'
-        end
-
         comments = data['comments'].split(' ').first if data['comments'].include? ''
         score = data['score'].split(' ').first if data['score'].include? ''
 
@@ -114,6 +106,7 @@ module HackerTerm
     private
 
     def add_missing_keys!
+      # Here we're looking to fix nodes with missing/incorrect data
       @data.each do |item|
         unless item.has_key? 'score'
           item['score'] = '0'

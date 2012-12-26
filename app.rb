@@ -2,7 +2,6 @@ $:.unshift(File.dirname(__FILE__) + '/lib')
 
 require 'hacker_term'
 
-data = JSON.parse(File.read './data/data.json')['items']
-
+page = HackerTerm::PageData.new File.read './data/data.json' 
 win = HackerTerm::UI.new
-win.show data
+win.show page.data
