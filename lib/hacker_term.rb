@@ -90,7 +90,7 @@ module HackerTerm
         score = '0' unless score.is_num?
 
         # Truncate if too long
-        title = data['title'][0, @title_width - 3] + '...' if data['title'].length >= @title_width 
+        title = truncate_line! data
 
         # Format and output
         formatted = sprintf("%4s | %-#{@title_width}s | %5s | %8s", rank, title, score, comments)
@@ -98,6 +98,11 @@ module HackerTerm
       rescue => ex
         p "error: #{ex.to_s}"
       end
+    end
+
+    def truncate_line!(data)
+      return data['title'][0, @title_width - 3] + '...' if data['title'].length >= @title_width
+      data['title']
     end
 
     def show(data)
