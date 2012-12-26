@@ -105,19 +105,27 @@ module HackerTerm
   end
 
   class PageData
-    attr_reader :data, :mean_score
+    attr_reader :data, :mean_score, :median_score
 
     def initialize(data)
       @data = JSON.parse(data)['items']
       add_missing_keys!
       format_numbers!
       calculate_mean_score
+      calculate_median_score
     end
 
     private
 
     def calculate_mean_score
       @mean_score = @data.inject(0.0) { |sum, el| sum + el['score'].to_f } / @data.size
+    end
+
+    def calculate_median_score
+      # Read our numbers and sort them first
+      sorted_scores = @data.map { |el| el['score'].to_f }.sort
+      len = sorted_scores.length
+      @median_score = len % 2 == 1 ? sorted_scores[len / 2] : (sorted_scores[len / 2 - 1] + sorted_scores[len / 2]).to_f / 2
     end
 
     def add_missing_keys!

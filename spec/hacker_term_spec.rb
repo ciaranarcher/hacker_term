@@ -59,7 +59,8 @@ module HackerTerm
         @page_data.mean_score.should == 194.19354838709677
       end
 
-      pending 'provides a median' do
+      it 'provides a median' do
+        @page_data.median_score.should == 131
       end
 
       pending 'provides a mode' do
