@@ -21,5 +21,15 @@ module HackerTerm
         @pd.data.first.should have_key 'comments'
       end
     end
+    describe 'calculating stats' do
+      pending 'provides a mean' do
+      end
+
+      pending 'provides a median' do
+      end
+
+      pending 'provides a mode' do
+      end
+    end
   end
 end
