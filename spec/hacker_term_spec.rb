@@ -10,11 +10,14 @@ module HackerTerm
              "description":"hn next id news2 "
           }]
         }'
+        @pd = PageData.new @data
       end
 
       it 'adds score node' do
-        pd = PageData.new @data
-        pd.data.first.should have_key 'score'
+        @pd.data.first.should have_key 'score'
+      end
+
+      pending 'adds comments node' do
       end
     end
   end
