@@ -54,7 +54,7 @@ module HackerTerm
       addstr((" " * @padding_left) + data + (" " * padding_right))
     end
 
-    def draw_header()
+    def draw_header
       attrset color_pair(1)
       output_line(next_line_num, "HACKER NEWS (Thanks to http://hndroidapi.appspot.com/)") 
       output_line(next_line_num, "Arrow keys to select | Enter to open | F5 to refresh")
@@ -72,8 +72,11 @@ module HackerTerm
       output_line(next_line_num, "rank | title " + " " * (@total_width - width_excl_title) + "| score | comments")
     end
 
-    def draw_footer(sorted_by, stats, key_options)
-      
+    def draw_footer(sorted_by='rank', mean, median, mode)
+      attrset color_pair(1)
+      formatted = sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
+        sorted_by, mean, median, mode)
+      output_line(next_line_num, formatted)
     end
 
     def draw_item_line(rank, data)
@@ -96,9 +99,10 @@ module HackerTerm
       data['title']
     end
 
-    def show(data)
+    def show(page_data)
       draw_header
-      data.each_index { |i| draw_item_line(i + 1, data.fetch(i))}
+      page_data.data.each_index { |i| draw_item_line(i + 1, page_data.data.fetch(i))}
+      draw_footer(page_data.mean_score, page_data.median_score, page_data.mode_score)
       getch
       close_screen
     end
