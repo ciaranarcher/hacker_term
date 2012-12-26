@@ -14,6 +14,14 @@ require 'json'
 # Sorted by: score | Mean: x | Median: x | Mode x 
 # Q:quit | R:sort/rank | T: sort/title | S:sort/score | C: sort/ comment  
 
+
+# Controversial mokeypatch of String class so it can tell us if a string is a number
+class String
+  def is_num?
+    self =~ /^[-+]?[0-9]*\.?[0-9]+$/
+  end
+end
+
 module HackerTerm
   class UI
     include Curses
@@ -71,16 +79,21 @@ module HackerTerm
     def draw_item_line(rank, data)
       comments = '-'
       score = '-'
+      title = data['title']
 
       attrset color_pair(0)
 
       begin
         comments = data['comments'].split(' ').first if data['comments'].include? ''
+        comments = '0' unless comments.is_num?
         score = data['score'].split(' ').first if data['score'].include? ''
+        score = '0' unless score.is_num?
 
-        formatted = sprintf("%4s | %-   #{@title_width}s | %5s | %8s", 
-          rank, data['title'], score, comments)
-        
+        # Truncate if too long
+        title = data['title'][0, @title_width - 3] + '...' if data['title'].length >= @title_width 
+
+        # Format and output
+        formatted = sprintf("%4s | %-#{@title_width}s | %5s | %8s", rank, title, score, comments)
         output_line(next_line_num, formatted)
       rescue => ex
         p "error: #{ex.to_s}"
