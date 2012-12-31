@@ -9,7 +9,7 @@ end
 
 module HackerTerm
   class PageData
-    attr_reader :data, :mean_score, :median_score, :mode_score, :sorted_by
+    attr_reader :data, :mean_score, :median_score, :mode_score, :sorted_by, :line_pos
 
     def initialize(data)
       @data = JSON.parse(data)['items']
@@ -22,6 +22,7 @@ module HackerTerm
       calculate_mode_score
 
       @sorted_by = 'RANK'
+      @line_pos = 1
     end
 
     def sort_on!(mode)
@@ -39,6 +40,14 @@ module HackerTerm
       end
 
       @sorted_by = mode.to_s.upcase
+    end
+
+    def change_line_pos(direction)
+      if direction == :up
+        @line_pos += 1 unless @line_pos == @data.length
+      elsif direction == :down
+        @line_pos -= 1 unless @line_pos == 1
+      end
     end
 
     private

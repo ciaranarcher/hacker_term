@@ -17,9 +17,16 @@ module HackerTerm
         char = @ui.get_char
 
         case char.to_s.upcase.chomp
-        when "27" # Esc
+        when "X" # Esc
           @ui.close
-          break
+          exit
+        when "UP"
+          @page.change_line_pos :down
+        when "DOWN"
+          @page.change_line_pos :up
+        when "REFRESH"
+          @raw_json = read_json
+          @page = PageData.new @raw_json
         when "S"
           @page.sort_on!(:score)
         when "R"
@@ -30,7 +37,7 @@ module HackerTerm
           @page.sort_on!(:comments)
         end
 
-       clear_and_show
+        clear_and_show
 
       end while true
     end

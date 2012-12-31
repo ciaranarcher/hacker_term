@@ -21,6 +21,10 @@ module HackerTerm
 
       opts = defaults.merge(opts) # Ununsed for now
 
+      raw # intercept everything
+      noecho # Do not echo user input to stdout
+      stdscr.keypad(true) # Enable arrows
+
       if can_change_color?
         start_color
         # foreground / background colours
@@ -50,12 +54,17 @@ module HackerTerm
       addstr((" " * @padding_left) + data + (" " * padding_right))
     end
 
+    def output_divider(line_num)
+      setpos(line_num, 0)
+      addstr('-' * @total_width)
+    end
+
     def draw_header
       attrset color_pair(1)
-      output_line(next_line_num, "-" * @total_width) 
+      output_divider(next_line_num) 
       output_line(next_line_num, "HACKER NEWS TERMINAL - thanks to http://hndroidapi.appspot.com") 
-      output_line(next_line_num, "COMMANDS: Select (Arrows), Open (Enter), Refresh (F5) | Sort by Rank (R), Score (S), Comments (C), Title (T) | Quit (ESC)")
-      output_line(next_line_num, "-" * @total_width) 
+      output_line(next_line_num, "COMMANDS: Select (Arrows), Open (Enter), Refresh (F5) | Sort by Rank (R), Score (S), Comments (C), Title (T) | Exit (X)")
+      output_divider(next_line_num) 
 
       # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
       # Once obtained, pad out the title column with the any width remaining
@@ -68,18 +77,18 @@ module HackerTerm
       attrset color_pair(2)
       @title_width = @total_width - width_excl_title + 'title'.length
       output_line(next_line_num, "RANK | TITLE " + " " * (@total_width - width_excl_title) + "| SCORE | COMMENTS")
-      output_line(next_line_num, "-" * @total_width) 
+      output_divider(next_line_num) 
     end
 
     def draw_footer(sorted_by, mean, median, mode)
       attrset color_pair(1)
-      output_line(next_line_num, "-" * @total_width) 
+      output_divider(next_line_num) 
       formatted = sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
         sorted_by, mean, median, mode)
       output_line(next_line_num, formatted)
     end
 
-    def draw_item_line(rank, data)
+    def draw_item_line(rank, data, selected)
       attrset color_pair(0)
 
       begin
@@ -87,6 +96,7 @@ module HackerTerm
         title = truncate_line! data
 
         # Format and output
+        rank = '> ' + rank if selected
         formatted = sprintf("%4s | %-#{@title_width}s | %5s | %8s", rank, title, data['score'], data['comments'])
         output_line(next_line_num, formatted)
       rescue => ex
@@ -104,7 +114,7 @@ module HackerTerm
 
       page_data.data.each_index do |i| 
         line_data = page_data.data.fetch(i)
-        draw_item_line(line_data['rank'].to_i, line_data) 
+        draw_item_line(line_data['rank'], line_data, page_data.line_pos == i + 1) 
       end
 
       draw_footer(page_data.sorted_by, 
@@ -115,7 +125,20 @@ module HackerTerm
     end
 
     def get_char
-      getch
+      interpret_char(getch)
+    end
+
+    def interpret_char(c)
+      case c
+      when Curses::Key::UP
+        'up'
+      when Curses::Key::DOWN
+        'down'
+      when Curses::Key::REFRESH
+        'refresh'
+      else
+        c
+      end
     end
 
     def close
@@ -123,7 +146,7 @@ module HackerTerm
     end
 
     def clear!
-      setpos(1, 0)
+      setpos(0, 0)
       clear
     end
 
