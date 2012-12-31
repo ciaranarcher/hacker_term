@@ -1,6 +1,10 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.3.2)
+    clipboard (1.0.1)
+    launchy (2.1.2)
+      addressable (~> 2.3)
     mime-types (1.19)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -9,4 +13,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  clipboard
+  launchy
   rest-client

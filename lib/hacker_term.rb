@@ -1,13 +1,14 @@
 require 'hacker_term/page_data'
 require 'hacker_term/ui'
 require 'rest_client'
+require 'launchy'
+require 'clipboard'
 
 module HackerTerm
   class TerminalApp
     def initialize
       @raw_json = read_json
-      @page = PageData.new @raw_json
-      @ui = UI.new
+      load
     end
 
     def run
@@ -17,23 +18,32 @@ module HackerTerm
         char = @ui.get_char
 
         case char.to_s.upcase.chomp
-        when "X" # Esc
+        when "Q"
           @ui.close
           exit
+        
         when "UP"
           @page.change_line_pos :down
+        
         when "DOWN"
           @page.change_line_pos :up
+        
+        when "O"
+          launch
+        
         when "A"
-          @raw_json = read_json
-          @page = PageData.new @raw_json
+          load
           @page.change_line_pos :reset
+        
         when "S"
           @page.sort_on!(:score)
+        
         when "R"
           @page.sort_on!(:rank)
+        
         when "T"
           @page.sort_on!(:title)
+        
         when "C"
           @page.sort_on!(:comments)
         end
@@ -44,6 +54,21 @@ module HackerTerm
     end
 
     private
+
+    def launch
+      # Attempts to launch a browser; writes URL to clipboard in any case
+      begin
+        Launchy.open @page.selected_url # May not work in 
+      rescue
+      ensure
+        Clipboard.copy @page.selected_url
+      end
+    end
+
+    def load
+      @page = PageData.new @raw_json
+      @ui = UI.new
+    end
 
     def read_json
       local_proxy = get_local_proxy

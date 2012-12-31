@@ -52,6 +52,10 @@ module HackerTerm
       end
     end
 
+    def selected_url
+      @data[@line_pos - 1]['url']
+    end
+
     private
 
     def calculate_mode_score
