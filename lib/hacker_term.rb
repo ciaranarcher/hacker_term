@@ -101,8 +101,14 @@ module HackerTerm
 
     def show(page_data)
       draw_header
-      page_data.data.each_index { |i| draw_item_line(i + 1, page_data.data.fetch(i))}
+
+      page_data.data.each_index do |i| 
+        line_data = page_data.data.fetch(i)
+        draw_item_line(line_data['rank'].to_i, line_data) 
+      end
+
       draw_footer(page_data.mean_score, page_data.median_score, page_data.mode_score)
+
       getch
       close_screen
     end
@@ -128,6 +134,8 @@ module HackerTerm
         @data = @data.sort { |a, b| a['score'].to_f <=> b['score'].to_f }
       when :comments
         @data = @data.sort { |a, b| a['comments'].to_f <=> b['comments'].to_f }
+      when :rank
+        @data = @data.sort { |a, b| a['rank'].to_f <=> b['rank'].to_f }
       else
         throw "sorting mode #{mode} not supported"
       end
@@ -155,7 +163,14 @@ module HackerTerm
 
     def add_missing_keys!
       # Here we're looking to fix nodes with missing/incorrect data
+      counter = 1
       @data.each do |item|
+
+        # Add rank (so we can re-sort in 'natural' order)
+        unless item.has_key? 'rank'
+          item['rank'] = counter.to_s
+        end
+
         unless item.has_key? 'score'
           item['score'] = '0'
         end
@@ -163,6 +178,8 @@ module HackerTerm
         unless item.has_key? 'comments'
           item['comments'] = '0'
         end
+
+        counter += 1
       end
     end
 
