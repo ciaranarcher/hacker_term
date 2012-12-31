@@ -30,6 +30,8 @@ module HackerTerm
         @data = @data.sort { |a, b| a['comments'].to_f <=> b['comments'].to_f }
       when :rank
         @data = @data.sort { |a, b| a['rank'].to_f <=> b['rank'].to_f }
+      when :title
+        @data = @data.sort { |a, b| a['title'].upcase <=> b['title'].upcase } # Convert all to upper case when comparing
       else
         throw "sorting mode #{mode} not supported"
       end
