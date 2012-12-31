@@ -58,7 +58,7 @@ module HackerTerm
     def launch
       # Attempts to launch a browser; writes URL to clipboard in any case
       begin
-        Launchy.open @page.selected_url # May not work in 
+        Launchy.open @page.selected_url # May not work in some Linux flavors
       rescue
       ensure
         Clipboard.copy @page.selected_url

@@ -1,18 +1,5 @@
 require 'curses'
 
-# HACKER NEWS
-# Arrow keys to select | Enter to open | F5 to refresh
-# rank | title                   | score | comments
-# 1    | xxxxxxxxxxxxxxxxxxxx... | 230   | 8
-# 2    | xxxxxxxxxxxxxxxxxxxx... | 29    | 0
-# 3    | xxxxxxxxxxxxxxxxxxxx... | 2     | 2
-# 4    | xxxxxxxxxxxxxxxxxxxx... | 45    | 6
-# 5    | xxxxxxxxxxxxxxxxxxxx... | 25    | 1
-# 6    | xxxxxxxxxxxxxxxxxxxx... | 98    | 80
-# 7    | xxxxxxxxxxxxxxxxxxxx... | 280   | 5
-# Sorted by: score | Mean: x | Median: x | Mode x 
-# Q:quit | R:sort/rank | T: sort/title | S:sort/score | C: sort/ comment  
-
 module HackerTerm
   class UI
     include Curses
@@ -21,7 +8,7 @@ module HackerTerm
 
       opts = defaults.merge(opts) # Ununsed for now
 
-      raw # intercept everything
+      raw # Intercept everything
       noecho # Do not echo user input to stdout
       stdscr.keypad(true) # Enable arrows
 
@@ -31,6 +18,7 @@ module HackerTerm
         init_pair(0, COLOR_WHITE, COLOR_BLACK)
         init_pair(1, COLOR_WHITE, COLOR_BLUE)
         init_pair(2, COLOR_WHITE, COLOR_RED)
+        init_pair(3, COLOR_WHITE, COLOR_GREEN)
       end
 
       @total_width = cols
@@ -56,12 +44,13 @@ module HackerTerm
 
     def output_divider(line_num)
       setpos(line_num, 0)
+      attrset color_pair(0)
       addstr('-' * @total_width)
     end
 
     def draw_header
-      attrset color_pair(1)
       output_divider(next_line_num) 
+      attrset color_pair(1)
       output_line(next_line_num, "HACKER NEWS TERMINAL - thanks to http://hndroidapi.appspot.com") 
       output_line(next_line_num, "COMMANDS: Select (Arrows), Open (O), Refresh (A) | Sort by Rank (R), Score (S), Comments (C), Title (T) | Quit (Q)")
       output_divider(next_line_num) 
@@ -81,11 +70,12 @@ module HackerTerm
     end
 
     def draw_footer(sorted_by, mean, median, mode)
-      attrset color_pair(1)
       output_divider(next_line_num) 
+      attrset color_pair(1)
       formatted = sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
         sorted_by, mean, median, mode)
       output_line(next_line_num, formatted)
+      output_divider(next_line_num) 
     end
 
     def draw_item_line(rank, data, selected)
