@@ -24,9 +24,10 @@ module HackerTerm
           @page.change_line_pos :down
         when "DOWN"
           @page.change_line_pos :up
-        when "REFRESH"
+        when "A"
           @raw_json = read_json
           @page = PageData.new @raw_json
+          @page.change_line_pos :reset
         when "S"
           @page.sort_on!(:score)
         when "R"

@@ -63,7 +63,7 @@ module HackerTerm
       attrset color_pair(1)
       output_divider(next_line_num) 
       output_line(next_line_num, "HACKER NEWS TERMINAL - thanks to http://hndroidapi.appspot.com") 
-      output_line(next_line_num, "COMMANDS: Select (Arrows), Open (Enter), Refresh (F5) | Sort by Rank (R), Score (S), Comments (C), Title (T) | Exit (X)")
+      output_line(next_line_num, "COMMANDS: Select (Arrows), Open (Enter), Refresh (A) | Sort by Rank (R), Score (S), Comments (C), Title (T) | Exit (X)")
       output_divider(next_line_num) 
 
       # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
@@ -134,8 +134,6 @@ module HackerTerm
         'up'
       when Curses::Key::DOWN
         'down'
-      when Curses::Key::REFRESH
-        'refresh'
       else
         c
       end

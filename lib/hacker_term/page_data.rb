@@ -47,6 +47,8 @@ module HackerTerm
         @line_pos += 1 unless @line_pos == @data.length
       elsif direction == :down
         @line_pos -= 1 unless @line_pos == 1
+      elsif direction == :reset
+        @line_pos = 1
       end
     end
 
