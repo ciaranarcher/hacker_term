@@ -11,8 +11,6 @@ module HackerTerm
     end
 
     def run
-      #$stdout.reopen('/dev/null', 'w') # Not sure if I'm going to need this yet...
-      
       clear_and_show
 
       begin
@@ -47,10 +45,8 @@ module HackerTerm
 
     def get_local_proxy
       # Cater for both upper and lower case env variables
-
       local_proxy = `echo $http_proxy`.chomp
       return local_proxy unless local_proxy.empty?
-
       `echo $HTTP_PROXY`.chomp
     end
 
