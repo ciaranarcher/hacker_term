@@ -72,15 +72,15 @@ module HackerTerm
 
     def read_json
       local_proxy = get_local_proxy
-      RestClient.proxy = local_proxy unless local_proxy.empty?
+      RestClient.proxy = local_proxy unless local_proxy.nil?
       RestClient.get 'http://hndroidapi.appspot.com/news/format/json/page/'
     end
 
     def get_local_proxy
       # Cater for both upper and lower case env variables
-      local_proxy = `echo $http_proxy`.chomp
-      return local_proxy unless local_proxy.empty?
-      `echo $HTTP_PROXY`.chomp
+      local_proxy = ENV['HTTP_PROXY']
+      return local_proxy unless local_proxy.nil?
+      ENV['http_proxy']
     end
 
     def clear_and_show
