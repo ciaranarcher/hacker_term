@@ -50,6 +50,7 @@ module HackerTerm
       end
 
     end
+
     describe 'calculating stats' do
       before(:each) do
         @page_data = HackerTerm::PageData.new File.read './data/data.json' 
@@ -65,6 +66,56 @@ module HackerTerm
 
       it 'provides a mode' do
         @page_data.mode_score.should == 0
+      end
+    end
+
+    describe 'sorting' do
+      before(:each) do
+        @data = 
+        '{"items":[
+          {
+           "title":"First Article",
+           "url":"http://google.com",
+           "score":"0 points",
+           "user":"dumitrue",
+           "comments":"100 comments",
+           "time":"14 hours ago",
+           "item_id":"4923914",
+           "description":"260 points by dumitrue 14 hours ago  | 122 comments"
+          },
+          {
+          "title":"Second Article",
+           "url":"http://google.com",
+           "score":"50 points",
+           "user":"dumitrue",
+           "comments":"5 comments",
+           "time":"14 hours ago",
+           "item_id":"4923914",
+           "description":"260 points by dumitrue 14 hours ago  | 122 comments"
+          },
+          {
+           "title":"Third Article",
+           "url":"http://google.com",
+           "score":"25 points",
+           "user":"dumitrue",
+           "comments":"0 comments",
+           "time":"14 hours ago",
+           "item_id":"4923914",
+           "description":"260 points by dumitrue 14 hours ago  | 122 comments"
+          }
+        ]}'
+        @pd = PageData.new @data
+      end
+
+      it 'preserves natural ordering as default' do
+        @pd.data.first['title'].should == 'First Article'
+        @pd.data.last['title'].should == 'Third Article'
+      end
+
+      it 'sorts by score when requested' do
+        @pd.sort_on!(:score)
+        @pd.data.first['title'].should == 'First Article'
+        @pd.data.last['title'].should == 'Second Article'
       end
     end
   end

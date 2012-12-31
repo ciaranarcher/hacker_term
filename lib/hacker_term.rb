@@ -122,6 +122,17 @@ module HackerTerm
       calculate_mode_score
     end
 
+    def sort_on!(mode)
+      case mode
+      when :score
+        @data = @data.sort do |a, b|
+          a['score'].to_f <=> b['score'].to_f
+        end
+      else
+        throw "sorting mode #{mode} not supported"
+      end
+    end
+
     private
 
     def calculate_mode_score
