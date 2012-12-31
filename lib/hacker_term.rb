@@ -126,6 +126,8 @@ module HackerTerm
       case mode
       when :score
         @data = @data.sort { |a, b| a['score'].to_f <=> b['score'].to_f }
+      when :comments
+        @data = @data.sort { |a, b| a['comments'].to_f <=> b['comments'].to_f }
       else
         throw "sorting mode #{mode} not supported"
       end
