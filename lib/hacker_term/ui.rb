@@ -52,8 +52,10 @@ module HackerTerm
 
     def draw_header
       attrset color_pair(1)
-      output_line(next_line_num, "HACKER NEWS (Thanks to http://hndroidapi.appspot.com/)") 
-      output_line(next_line_num, "Arrow keys to select | Enter to open | F5 to refresh")
+      output_line(next_line_num, "-" * @total_width) 
+      output_line(next_line_num, "HACKER NEWS TERMINAL - thanks to http://hndroidapi.appspot.com") 
+      output_line(next_line_num, "COMMANDS: Select (Arrows), Open (Enter), Refresh (F5) | Sort by Rank (R), Score (S), Comments (C), Title (T) | Quit (ESC)")
+      output_line(next_line_num, "-" * @total_width) 
 
       # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
       # Once obtained, pad out the title column with the any width remaining
@@ -65,11 +67,13 @@ module HackerTerm
       end
       attrset color_pair(2)
       @title_width = @total_width - width_excl_title + 'title'.length
-      output_line(next_line_num, "rank | title " + " " * (@total_width - width_excl_title) + "| score | comments")
+      output_line(next_line_num, "RANK | TITLE " + " " * (@total_width - width_excl_title) + "| SCORE | COMMENTS")
+      output_line(next_line_num, "-" * @total_width) 
     end
 
     def draw_footer(sorted_by, mean, median, mode)
       attrset color_pair(1)
+      output_line(next_line_num, "-" * @total_width) 
       formatted = sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
         sorted_by, mean, median, mode)
       output_line(next_line_num, formatted)
