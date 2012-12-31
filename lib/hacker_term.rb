@@ -125,9 +125,7 @@ module HackerTerm
     def sort_on!(mode)
       case mode
       when :score
-        @data = @data.sort do |a, b|
-          a['score'].to_f <=> b['score'].to_f
-        end
+        @data = @data.sort { |a, b| a['score'].to_f <=> b['score'].to_f }
       else
         throw "sorting mode #{mode} not supported"
       end
