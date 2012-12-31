@@ -32,6 +32,8 @@ module HackerTerm
       @title_width = 0
       @cols  = ['rank', 'title', 'score', 'comments']
       @line_num = -1
+
+      clear!
     end
 
     def next_line_num
@@ -63,7 +65,7 @@ module HackerTerm
       output_line(next_line_num, "rank | title " + " " * (@total_width - width_excl_title) + "| score | comments")
     end
 
-    def draw_footer(sorted_by='rank', mean, median, mode)
+    def draw_footer(sorted_by='Rank', mean, median, mode)
       attrset color_pair(1)
       formatted = sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
         sorted_by, mean, median, mode)
@@ -99,9 +101,19 @@ module HackerTerm
       end
 
       draw_footer(page_data.mean_score, page_data.median_score, page_data.mode_score)
+    end
 
+    def get_char
       getch
+    end
+
+    def close
       close_screen
+    end
+
+    def clear!
+      setpos(1, 0)
+      clear
     end
   end
 end
