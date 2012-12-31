@@ -124,7 +124,14 @@ module HackerTerm
         @pd.data.last['title'].should == 'First Article'
       end
 
-      it 'sorts by rank of comments when requested' do
+      it 'sorts by rank when requested' do
+        @pd.sort_on!(:rank)
+        @pd.data.first['title'].should == 'First Article'
+        @pd.data.last['title'].should == 'Third Article'
+      end
+
+      it 're-sorts by rank when requested' do
+        @pd.sort_on!(:comments)
         @pd.sort_on!(:rank)
         @pd.data.first['title'].should == 'First Article'
         @pd.data.last['title'].should == 'Third Article'
