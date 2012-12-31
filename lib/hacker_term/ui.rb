@@ -17,7 +17,10 @@ module HackerTerm
   class UI
     include Curses
 
-    def initialize(config={})
+    def initialize(opts={})
+
+      opts = defaults.merge(opts) # Ununsed for now
+
       if can_change_color?
         start_color
         # foreground / background colours
@@ -65,7 +68,7 @@ module HackerTerm
       output_line(next_line_num, "rank | title " + " " * (@total_width - width_excl_title) + "| score | comments")
     end
 
-    def draw_footer(sorted_by='Rank', mean, median, mode)
+    def draw_footer(sorted_by, mean, median, mode)
       attrset color_pair(1)
       formatted = sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
         sorted_by, mean, median, mode)
@@ -100,7 +103,11 @@ module HackerTerm
         draw_item_line(line_data['rank'].to_i, line_data) 
       end
 
-      draw_footer(page_data.mean_score, page_data.median_score, page_data.mode_score)
+      draw_footer(page_data.sorted_by, 
+        page_data.mean_score, 
+        page_data.median_score, 
+        page_data.mode_score
+      )
     end
 
     def get_char
@@ -114,6 +121,12 @@ module HackerTerm
     def clear!
       setpos(1, 0)
       clear
+    end
+
+    private
+
+    def defaults
+      @options ||= {}
     end
   end
 end

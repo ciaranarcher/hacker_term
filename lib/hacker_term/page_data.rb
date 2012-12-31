@@ -9,7 +9,7 @@ end
 
 module HackerTerm
   class PageData
-    attr_reader :data, :mean_score, :median_score, :mode_score
+    attr_reader :data, :mean_score, :median_score, :mode_score, :sorted_by
 
     def initialize(data)
       @data = JSON.parse(data)['items']
@@ -20,6 +20,8 @@ module HackerTerm
       calculate_mean_score
       calculate_median_score
       calculate_mode_score
+
+      @sorted_by = 'RANK'
     end
 
     def sort_on!(mode)
@@ -35,6 +37,8 @@ module HackerTerm
       else
         throw "sorting mode #{mode} not supported"
       end
+
+      @sorted_by = mode.to_s.upcase
     end
 
     private
