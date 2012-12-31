@@ -1,19 +1,4 @@
-require 'curses'
 require 'json'
-
-# HACKER NEWS
-# Arrow keys to select | Enter to open | F5 to refresh
-# rank | title                   | score | comments
-# 1    | xxxxxxxxxxxxxxxxxxxx... | 230   | 8
-# 2    | xxxxxxxxxxxxxxxxxxxx... | 29    | 0
-# 3    | xxxxxxxxxxxxxxxxxxxx... | 2     | 2
-# 4    | xxxxxxxxxxxxxxxxxxxx... | 45    | 6
-# 5    | xxxxxxxxxxxxxxxxxxxx... | 25    | 1
-# 6    | xxxxxxxxxxxxxxxxxxxx... | 98    | 80
-# 7    | xxxxxxxxxxxxxxxxxxxx... | 280   | 5
-# Sorted by: score | Mean: x | Median: x | Mode x 
-# Q:quit | R:sort/rank | T: sort/title | S:sort/score | C: sort/ comment  
-
 
 # Controversial monkeypatch of String class so it can tell us if a string is a number
 class String

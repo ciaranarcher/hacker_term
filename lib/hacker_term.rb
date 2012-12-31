@@ -1,8 +1,12 @@
-$:.unshift(File.dirname(__FILE__) + '/lib')
+require 'hacker_term/page_data'
+require 'hacker_term/ui'
 
-require 'page_data'
-require 'ui'
-
-page = HackerTerm::PageData.new File.read './data/data.json' 
-win = HackerTerm::UI.new
-win.show page
+module HackerTerm
+  class TerminalApp
+    def self.run
+      page = PageData.new File.read './data/data.json' 
+      win = UI.new
+      win.show page
+    end
+  end
+end

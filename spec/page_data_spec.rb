@@ -1,4 +1,4 @@
-require 'hacker_term'
+require 'hacker_term/page_data'
 
 module HackerTerm
   describe PageData do

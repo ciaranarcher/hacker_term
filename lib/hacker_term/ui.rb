@@ -1,5 +1,4 @@
 require 'curses'
-require 'json'
 
 # HACKER NEWS
 # Arrow keys to select | Enter to open | F5 to refresh
