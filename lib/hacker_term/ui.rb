@@ -18,7 +18,7 @@ module HackerTerm
         init_pair(0, COLOR_WHITE, COLOR_BLACK)
         init_pair(1, COLOR_WHITE, COLOR_BLUE)
         init_pair(2, COLOR_WHITE, COLOR_RED)
-        init_pair(3, COLOR_WHITE, COLOR_GREEN)
+        init_pair(3, COLOR_BLACK, COLOR_GREEN)
       end
 
       @total_width = cols
@@ -79,14 +79,19 @@ module HackerTerm
     end
 
     def draw_item_line(rank, data, selected)
-      attrset color_pair(0)
 
       begin
         # Truncate if too long
         title = truncate_line! data
 
         # Format and output
-        rank = '> ' + rank if selected
+        if selected
+          rank = '> ' + rank
+          attrset color_pair(3)
+        else
+          attrset color_pair(0)
+        end
+
         formatted = sprintf("%4s | %-#{@title_width}s | %5s | %8s", rank, title, data['score'], data['comments'])
         output_line(next_line_num, formatted)
       rescue => ex
