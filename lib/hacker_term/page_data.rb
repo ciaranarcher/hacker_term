@@ -28,13 +28,13 @@ module HackerTerm
     def sort_on!(mode)
       case mode
       when :score
-        @data = @data.sort { |a, b| a['score'].to_f <=> b['score'].to_f }
+        @data = @data.sort { |a, b| b['score'].to_f <=> a['score'].to_f }
       when :comments
-        @data = @data.sort { |a, b| a['comments'].to_f <=> b['comments'].to_f }
+        @data = @data.sort { |a, b| b['comments'].to_f <=> a['comments'].to_f }
       when :rank
-        @data = @data.sort { |a, b| a['rank'].to_f <=> b['rank'].to_f }
+        @data = @data.sort { |a, b| b['rank'].to_f <=> a['rank'].to_f }
       when :title
-        @data = @data.sort { |a, b| a['title'].upcase <=> b['title'].upcase } # Convert all to upper case when comparing
+        @data = @data.sort { |a, b| b['title'].upcase <=> a['title'].upcase } # Convert all to upper case when comparing
       else
         throw "sorting mode #{mode} not supported"
       end
