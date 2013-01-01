@@ -1,5 +1,13 @@
+PATH
+  remote: .
+  specs:
+    hacker_term (0.0.1)
+      clipboard
+      launchy
+      rest-client
+
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     addressable (2.3.2)
     clipboard (1.0.1)
@@ -13,6 +21,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  clipboard
-  launchy
-  rest-client
+  hacker_term!

@@ -1,5 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem 'rest-client'
-gem 'launchy'
-gem 'clipboard'
+# Specify your gem's dependencies in hacker_term.gemspec
+gemspec
