@@ -11,7 +11,7 @@ module HackerTerm
       load
     end
 
-    def run
+    def run!
       clear_and_show
 
       begin
@@ -51,6 +51,8 @@ module HackerTerm
         clear_and_show
 
       end while true
+
+      0 # Zero exit code means everything was OK...
     end
 
     private
