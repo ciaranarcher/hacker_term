@@ -34,7 +34,7 @@ module HackerTerm
       when :rank
         @data = @data.sort_by { |a| a['rank'].to_f }
       when :title
-        @data = @data.sort_by { |a| a['title'].to_f }
+        @data = @data.sort_by { |a| a['title'].upcase }
       else
         throw "Sorting mode #{mode} not supported!"
       end
