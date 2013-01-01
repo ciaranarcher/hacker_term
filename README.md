@@ -20,6 +20,7 @@ See the front page of HN, use the arrow keys to browse and open particular items
 * Uses the HN feed available at http://hndroidapi.appspot.com - without that resource this project would not exist.
 * Sorting options included.
 * Some stats included.
+* Blog post here: http://flydillonfly.wordpress.com/2013/01/01/hacker-news-in-your-terminal/
 
 Background
 ----------
