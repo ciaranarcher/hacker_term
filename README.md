@@ -2,6 +2,8 @@ hacker_term
 ==========
 Hacker News on the Terminal.
 
+![Screenshot](http://flydillonfly.files.wordpress.com/2013/01/hacker_term_png1.png)
+
 Installation
 ------------
 * Install with `gem install hacker_term`
