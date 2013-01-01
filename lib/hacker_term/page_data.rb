@@ -28,15 +28,15 @@ module HackerTerm
     def sort_on!(mode)
       case mode
       when :score
-        @data = @data.sort_by { |a| a['score'].to_f }
+        @data = @data.sort_by { |a| -a['score'].to_f } # desc
       when :comments
-        @data = @data.sort_by { |a| a['comments'].to_f }
+        @data = @data.sort_by { |a| -a['comments'].to_f } # desc
       when :rank
         @data = @data.sort_by { |a| a['rank'].to_f }
       when :title
         @data = @data.sort_by { |a| a['title'].to_f }
       else
-        throw "sorting mode #{mode} not supported"
+        throw "Sorting mode #{mode} not supported!"
       end
 
       @sorted_by = mode.to_s.upcase

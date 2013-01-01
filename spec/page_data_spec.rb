@@ -114,14 +114,14 @@ module HackerTerm
 
       it 'sorts by score when requested' do
         @pd.sort_on!(:score)
-        @pd.data.first['title'].should == 'First Article'
-        @pd.data.last['title'].should == 'Second Article'
+        @pd.data.first['title'].should == 'Second Article'
+        @pd.data.last['title'].should == 'First Article'
       end
 
       it 'sorts by number of comments when requested' do
         @pd.sort_on!(:comments)
-        @pd.data.first['title'].should == 'Third Article'
-        @pd.data.last['title'].should == 'First Article'
+        @pd.data.first['title'].should == 'First Article'
+        @pd.data.last['title'].should == 'Third Article'
       end
 
       it 'sorts by rank when requested' do
