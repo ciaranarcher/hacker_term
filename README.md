@@ -1,8 +1,14 @@
 hacker_term
 ==========
-
 Hacker News on the Terminal.
 
+Installation
+------------
+* Install with `gem install hacker_term`
+* Run using `hacker_term`
+
+Overview
+--------
 See the front page of HN, use the arrow keys to browse and open particular items in the default system browser.
 
 * Uses the Ruby `curses` library to create a terminal UI.
@@ -13,6 +19,8 @@ See the front page of HN, use the arrow keys to browse and open particular items
 * Sorting options included.
 * Some stats included.
 
+Background
+----------
 This project was created to allow me to scratch a particular programming itch after reading about https://github.com/etsy/mctop. It brought me back to my days in college coding in C where everything was a terminal program!
 
 Please enjoy/contribute/ignore as you see fit.
