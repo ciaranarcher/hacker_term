@@ -28,6 +28,12 @@ module HackerTerm
         when "DOWN"
           @page.change_line_pos :up
         
+        when "K"
+          @page.change_line_pos :down
+
+        when "J"
+          @page.change_line_pos :up
+
         when "O"
           launch
         
