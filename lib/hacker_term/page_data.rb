@@ -16,6 +16,7 @@ module HackerTerm
       
       add_missing_keys!
       format_numbers!
+      format_urls!
       
       calculate_mean_score
       calculate_median_score
@@ -108,5 +109,13 @@ module HackerTerm
         item['score'] = '0' unless item['score'].is_num?
       end
     end
+
+    def format_urls!
+      # Add HN domain for posts without an external link
+      @data.each do |item|
+        item['url'] = "http://news.ycombinator.com/#{item['url']}" if item['url'] =~ /^item\?id=[0-9]+/
+      end
+    end
+
   end
 end

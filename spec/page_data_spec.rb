@@ -51,6 +51,29 @@ module HackerTerm
 
     end
 
+    describe 'format urls' do
+      before :each do 
+        @data = 
+        '{"items":[
+          {
+            "title": "Ask HN: Who is hiring? (January 2013)",
+            "url": "item?id=4992617",
+            "score": "175 points",
+            "user": "whoishiring",
+            "comments": "140 comments",
+            "time": "11 hours ago",
+            "item_id": "4992617",
+            "description": "175 points points by whoishiring 11 hours ago | 140 comments"
+          }
+        ]}'
+        @pd = PageData.new @data
+      end
+
+      it 'link to HN if url is not external' do
+        @pd.data.first['url'].should == 'http://news.ycombinator.com/item?id=4992617'
+      end
+    end
+
     describe 'calculating stats' do
       before(:each) do
         @page_data = HackerTerm::PageData.new File.read './data/data.json' 
