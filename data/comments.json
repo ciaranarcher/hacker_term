@@ -1,0 +1,706 @@
+{
+  "items":[
+    {
+      "username":"edw519",
+      "comment":"From Line 42536 of the 2008 CSV file:__BR__20090201_PIT@ARI,2,30,18,ARI,PIT,1,1,1,(:18) (Shotgun) K.Warner pass short middle intended for A.Boldin INTERCEPTED by J.Harrison at PIT 0. J.Harrison for 100 yards TOUCHDOWN. Super Bowl Record longest interception return yards. Penalty on ARZ-E.Brown Face Mask (15 Yards) declined. The Replay Assistant challenged the runner broke the plane ruling and the play was Upheld.,7,10,2008__BR__They forgot: for(i=0;i&amp;#60;92;i++){yell('edw519','GO!')}__BR__Seriously, I had plans for the next 4 days, but I just scrapped them. Funny how jazzed I get when it's data that I can really relate to...__BR__I've already structured my data warehouse and started the loads. (I'll probably need a whole day just to parse the text in Field 10.) Then I'm going to build a Business Intelligence system on top of it. I will finally have the proof I need that I, not the offensive coordinator, should be texting each play to Coach Tomlin.__BR__See you guys on Monday.__BR__EDIT: OK, I'm back, but not for long. I'm having way too much fun with this...__BR__fleaflicker: Cool website &amp;#38; domain name. Thanks for the tips. I expect shortcomings in the data, but it looks like it's in a lot better shape than the usual free form enterprise quality\/vendor\/customer comments I usually have to parse. We'll see...__BR__MattSayer &amp;#38; sjs382: I don't plan to do any analysis. I prefer to build an app that enables others to do their own analyses, answering questions that nobody else is asking. Like \\\"Which Steeler makes the most tackles on opposing runs or more than 5 yards when it's 3rd down and longer than 8 yards to go, the temperature is below 38, and edw519 is twirling his Terrible Towel clockwise?\\\"__BR__jerf: Nice thought. I've spent years trying to earn enough money to buy the Pittsburgh Steelers just to fire the slackers and fumblers and win the Super Bowl every year. Maybe I should just take an easier route and solve that problem like any self-respecting hacker should: with data &amp;#38; logic. No Steeler game this weekend; I may have found my destiny &amp;#60;\/sarcasm&amp;#62;",
+      "id":"5003343",
+      "grayedOutPercent":0,
+      "reply_id":"5003343&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"3 hours ago",
+      "children":[
+        {
+          "username":"jtchang",
+          "comment":"And here is that play :)__BR__http:\/\/www.youtube.com\/watch?v=oM1iXHY8s9o",
+          "id":"5004400",
+          "grayedOutPercent":0,
+          "reply_id":"5004400&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"8 minutes ago",
+          "children":[
+
+          ]
+        },
+        {
+          "username":"fleaflicker",
+          "comment":"You'll find that the text descriptions aren't consistently formatted. It's tough to extract structured data from all play descriptions.__BR__For example, first initial plus last name does does not uniquely identify a player. You'll need accurate roster data first, and even then there are clashes.__BR__We store play data by its structured components (players involved, play type, player roles, etc) and then derive the text description. This allows us to reassemble pbp data from different pro games to show a \\\"feed\\\" for your fantasy team.__BR__Baseball has a smaller set of play outcomes\/transitions so its easier to model this way. As your example from the Steelers Super Bowl shows, football plays can be very complex.",
+          "id":"5003544",
+          "grayedOutPercent":0,
+          "reply_id":"5003544&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+            {
+              "username":"fennecfoxen",
+              "comment":"\\\"It's tough to extract structured data from all play descriptions.\\\"__BR__Which means you can treat it a bit like a text mining program. NASA had a text mining contest in 2007 as part of the SIAM conference on data mining which was really similar - instead of football plays it was textual descriptions of aeronautics incident reports and their classification. There were several papers that came out of that (I was with a group that did one of them, using an approximate nonnegative matrix classification approach - got beat out by some ensemble approaches).__BR__Anyway - if you'd like to do something with unstructured football play descriptions, text mining might be able to empower you to some extent without going through a full manual analysis, and those papers could be a good starting point. I think some of them ended up in a volume titled _Survey of Text Mining II_.",
+              "id":"5003789",
+              "grayedOutPercent":0,
+              "reply_id":"5003789&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"1 hour ago",
+              "children":[
+
+              ]
+            },
+            {
+              "username":"JL2010",
+              "comment":"I had asked a question on stack-overflow a while ago asking for some guidance on parsing this exact kind of stuff. http:\/\/stackoverflow.com\/questions\/8198923\/natural-language-...",
+              "id":"5003894",
+              "grayedOutPercent":0,
+              "reply_id":"5003894&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"1 hour ago",
+              "children":[
+
+              ]
+            }
+          ]
+        },
+        {
+          "username":"jerf",
+          "comment":"I eagerly wait your next eBook, \\\"How I Pivoted Into The NFL\\\".",
+          "id":"5003384",
+          "grayedOutPercent":0,
+          "reply_id":"5003384&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"3 hours ago",
+          "children":[
+            {
+              "username":"iansinke",
+              "comment":"\\\"How I Pivot-tabled Into The NFL\\\"",
+              "id":"5003549",
+              "grayedOutPercent":0,
+              "reply_id":"5003549&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"2 hours ago",
+              "children":[
+
+              ]
+            }
+          ]
+        },
+        {
+          "username":"sjs382",
+          "comment":"Funny, I was looking for just that line to see how the more complicated plays were described.__BR__First thing that I noticed was that the Game ID matched CBS's website's URLs: 20090201_PIT@ARI == http:\/\/www.cbssports.com\/nfl\/gametracker\/playbyplay\/NFL_2009...__BR__Also, I went to compare this PBP to both ESPN and CBS and found that both have the exact PBP data, which is interesting because it seems that they got this data directly from the NFL (or from the same source, at least).  I guess this makes sense, but it's something I hadn't considered.__BR__For reference, ESPN's PBP for the same game: http:\/\/espn.go.com\/nfl\/playbyplay?gameId=290201022&amp;#38;perio...",
+          "id":"5003412",
+          "grayedOutPercent":0,
+          "reply_id":"5003412&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+            {
+              "username":"sswezey",
+              "comment":"I think they all get their data for Elias Sports Bureau",
+              "id":"5003529",
+              "grayedOutPercent":0,
+              "reply_id":"5003529&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"2 hours ago",
+              "children":[
+
+              ]
+            },
+            {
+              "username":"anon987",
+              "comment":"It looks like the same format they use for NFL Game Rewind too.  I would guess that there is an official syntax and the data is provided by the NFL because if not you would have all types of formats and opinions about the game baked into each team's data.  I would also guess the same office that keeps records (game, individual, all time, etc) are the ones that keep the play by play too.__BR__Overall this is neat but it's hard to find real life context within this data.  Was the QB pressured, was a coverage blown, was there a pre-snap audible or motion or change by the defense, what was the formation, how much sleep did the players get the night before, etc etc.",
+              "id":"5003473",
+              "grayedOutPercent":0,
+              "reply_id":"5003473&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"2 hours ago",
+              "children":[
+
+              ]
+            }
+          ]
+        },
+        {
+          "username":"MattSayar",
+          "comment":"Please post your results, I'd love to read your analysis.",
+          "id":"5003373",
+          "grayedOutPercent":0,
+          "reply_id":"5003373&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"3 hours ago",
+          "children":[
+            {
+              "username":"sjs382",
+              "comment":"Agreed.  I'd love to learn about the process, too.  Not just the results\/findings.",
+              "id":"5003439",
+              "grayedOutPercent":0,
+              "reply_id":"5003439&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"2 hours ago",
+              "children":[
+
+              ]
+            }
+          ]
+        },
+        {
+          "username":"mav3r1ck",
+          "comment":"@edw518, Awesome! Thank you for sharing what you're doing here with the data. I was thinking of playing with this dataset too and since I'm new to this field (data), look forward to learning from you if you post more info in the future!__BR__Thanks!",
+          "id":"5003681",
+          "grayedOutPercent":0,
+          "reply_id":"5003681&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+            {
+              "username":"larrydag",
+              "comment":"One of the \\\"new\\\" ways that Burke (data creator) et al are using with this type of data is finding the Expected Points Added for each plays.  The EPA allows one to determine how valuable players are to a team's performance.__BR__http:\/\/www.advancednflstats.com\/2010\/01\/expected-points-ep-a...__BR__I've been trying to work at the college football level with this same strategy but I'm still trying to figure out how its calculated.  It seems trivial but it takes a lot of data organizing.",
+              "id":"5004431",
+              "grayedOutPercent":0,
+              "reply_id":"5004431&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"4 minutes ago",
+              "children":[
+
+              ]
+            }
+          ]
+        },
+        {
+          "username":"tesmar2",
+          "comment":"It looks like a lot of the work you are hoping to do has already been done on http:\/\/statsheet.com\/nfl__BR__Though perhaps not as open...",
+          "id":"5003703",
+          "grayedOutPercent":0,
+          "reply_id":"5003703&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+            {
+              "username":"tvon",
+              "comment":"See also, http:\/\/www.pro-football-reference.com\/, but I'd love to see something on github.",
+              "id":"5004053",
+              "grayedOutPercent":0,
+              "reply_id":"5004053&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"1 hour ago",
+              "children":[
+
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "username":"tghw",
+      "comment":"Looking through the 2002 season, there's an oddity around touchdowns and extra points. It seems that the 6 points for the touchdown are bundled with the extra point, and the score is not updated until the extra point is complete.__BR__It seems this might result in bugs, as in the Oct 20, 2002 game between Dallas and Arizona. In the third quarter, with a score of Arizona 6 - Dallas 0, Dallas scored a touchdown (row 13900) but \\\"aborted\\\" the extra point (row 13901). The 6 points for the Cowboys are not recorded in the data.__BR__The game eventually went to overtime, with the Cardinals kicking a winning field goal in OT for a final score of Arizona 9 - Dallas 6, but the data here records it as Arizona 6 - Dallas 0.",
+      "id":"5003378",
+      "grayedOutPercent":0,
+      "reply_id":"5003378&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"3 hours ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"danso",
+      "comment":"There's a FAQ for this data that is on the site's main nav:__BR__http:\/\/www.advancednflstats.com\/2007\/02\/contact.html__BR__Of particular interest:__BR__Where did you get your data?__BR__Most of my team data comes from open online sources such as espn.com, nfl.com, myway.com, and yahoo.com. It's easy for anyone to grab whatever they're interested in from those sites.__BR__My play-by-play data comes from a source that's not publicly available, and at this time I regret that I cannot share it. However, I am working hard to develop a way to spread the wealth. One of my biggest goals is to help create a larger, more open, and more collaborative community for football research.__BR__----__BR__There's no real terms of service so I'm curious as to the constraints in using this for commercial purposes. I most definitely want to use this for teaching purposes (how to text-mine, how to build a web app from data, etc) but want to know what terms the data can be redistributed.",
+      "id":"5003989",
+      "grayedOutPercent":0,
+      "reply_id":"5003989&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"1 hour ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"dude_abides",
+      "comment":"Here is an idea: build a predictive model of an offensive coach that predicts the play he will call, given a game situation (and based on that, build a predictiveness quotient for a coach).",
+      "id":"5003533",
+      "grayedOutPercent":0,
+      "reply_id":"5003533&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"2 hours ago",
+      "children":[
+        {
+          "username":"fleaflicker",
+          "comment":"It doesn't work like that in practice. Football is very dependent on matchups. Coaches will vary gameplans from week-to-week to exploit weaknesses they see on film.",
+          "id":"5003557",
+          "grayedOutPercent":0,
+          "reply_id":"5003557&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+            {
+              "username":"dude_abides",
+              "comment":"Matchup would be a part of the model. My experience with predictive modeling in various domains has taught me that people tend to underestimate how predictive they are (NFL offensive\/defensive coaches are no exception).",
+              "id":"5003599",
+              "grayedOutPercent":0,
+              "reply_id":"5003599&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"2 hours ago",
+              "children":[
+
+              ]
+            },
+            {
+              "username":"jpeterson",
+              "comment":"It could still be useful for finding tendencies, though.",
+              "id":"5003628",
+              "grayedOutPercent":0,
+              "reply_id":"5003628&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"2 hours ago",
+              "children":[
+                {
+                  "username":"zachgemignani",
+                  "comment":"Visualization of rushing tendencies using this very data http:\/\/labs.juiceanalytics.com\/spider\/index.html",
+                  "id":"5004211",
+                  "grayedOutPercent":0,
+                  "reply_id":"5004211&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+                  "time":"40 minutes ago",
+                  "children":[
+
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "username":"nchuhoai",
+          "comment":"Here is a start: https:\/\/www.dropbox.com\/s\/cy04oxaq83mxvoz\/report.pdf",
+          "id":"5004309",
+          "grayedOutPercent":0,
+          "reply_id":"5004309&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"24 minutes ago",
+          "children":[
+
+          ]
+        },
+        {
+          "username":"zgohr",
+          "comment":"If only a single play call had a single potential outcome, and that outcome was always met. Using these stats for predictions would seem extremely difficult beyond answering, \\\"will it be a run or a pass?\\\"",
+          "id":"5003587",
+          "grayedOutPercent":0,
+          "reply_id":"5003587&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+
+          ]
+        },
+        {
+          "username":"sethist",
+          "comment":"There are too many missing variables.  The most obvious being who made the actual play call, the head coach, the offensive coordinator, or the quarterback.",
+          "id":"5003654",
+          "grayedOutPercent":0,
+          "reply_id":"5003654&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+
+          ]
+        }
+      ]
+    },
+    {
+      "username":"evanjacobs",
+      "comment":"A bit OT, but I thought this might be a good opportunity to mention the upcoming SportsHackDay in Seattle from Feb 1-3 which culminates in a group viewing of the SuperBowl.http:\/\/sportshackday.com\/",
+      "id":"5004432",
+      "grayedOutPercent":0,
+      "reply_id":"5004432&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"4 minutes ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"arscan",
+      "comment":"I'm frankly surprised that this information is allowed to be distributed.  I spent awhile in the financial services industry, and while it was really easy to obtain \\\"public\\\" information like stock quote data, I recall that we weren't allowed to simply scrape data from public sites... we had to pay a license fee to get a feed of the data if we were planning on repackaging &amp;#38; distributing it.__BR__It seems to me that the NFL would want to have exclusive rights to distribute this data and charge people a fee for access to it.  Clearly I'm no expert in these legal affairs though.",
+      "id":"5003277",
+      "grayedOutPercent":0,
+      "reply_id":"5003277&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"3 hours ago",
+      "children":[
+        {
+          "username":"saturdayplace",
+          "comment":"I'd love to believe that this data falls underneath the \\\"Facts are not copyrightable\\\" decision: http:\/\/chart.copyrightdata.com\/c16B.html",
+          "id":"5004253",
+          "grayedOutPercent":0,
+          "reply_id":"5004253&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"33 minutes ago",
+          "children":[
+            {
+              "username":"xentronium",
+              "comment":"Facts are not copyrightable, but databases (compilations of data) are.__BR__IANALTINALA.",
+              "id":"5004366",
+              "grayedOutPercent":0,
+              "reply_id":"5004366&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"14 minutes ago",
+              "children":[
+
+              ]
+            }
+          ]
+        },
+        {
+          "username":"aidenn0",
+          "comment":"IANAL, but I asked one about this while ago; let's see if I can remember: It's complicated.  The NFL broadcasts are copyrighted, and come with a statement that (among other things) distributing descriptions of the game is not allowed.  That could be considered a derivative work.__BR__On the other hand, a live performance is generally not protected from copyright, so if you attend a live game to collect the data, you may be in the clear.__BR__The data isn't owned by the NFL, but all recordings of the games are, and so any data obtained by watching recordings of the games could potentially be controlled by the NFL.",
+          "id":"5003327",
+          "grayedOutPercent":0,
+          "reply_id":"5003327&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"3 hours ago",
+          "children":[
+            {
+              "username":"_delirium",
+              "comment":"It might not even violate the NFL's copyright if extracted from tapes. For one thing, something is only a \\\"derived work\\\" for copyright purposes if it's a \\\"creative work\\\" subject to copyright at all, and in the U.S., data sets comprising factual information aren't typically considered \\\"creative\\\". For another, it's not clear whether data about a recording is derived from the recording for copyright purposes. For example, a re-edit or mash-up of a film is clearly a derived work, but is a count of how many minutes each character speaks a derived work? Or is a Spotify-style algorithmic analysis of a song's musical style a derived work of the song?__BR__I wouldn't want to put a large bet on where exactly those lines are drawn, though.",
+              "id":"5003422",
+              "grayedOutPercent":0,
+              "reply_id":"5003422&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"2 hours ago",
+              "children":[
+
+              ]
+            },
+            {
+              "username":"sethist",
+              "comment":"IANAL too, but the NFL lost a relatively recent court case regarding fantasy football that, as far as I am aware, made the leagues statistics public knowledge as long as you compile the information yourself. Therefore the main legal issue with this data would be the source.",
+              "id":"5003357",
+              "grayedOutPercent":0,
+              "reply_id":"5003357&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"3 hours ago",
+              "children":[
+
+              ]
+            }
+          ]
+        },
+        {
+          "username":"vsprabhakara1",
+          "comment":"Generally speaking, stats are public domain as they are a public event that occurred.  Because a sports league may disagree with this position doesn't mean that it isn't true.  However, its entirely possible to violate a given site's TOU by scraping the data, it doesn't mean the data itself isn't allowed to be compiled or distributed.__BR__IANAL, but I worked at ESPN and founded Fanvibe (YC S'10), and worked quite a bit with the leagues and lawyers on rights-related topics.",
+          "id":"5003440",
+          "grayedOutPercent":0,
+          "reply_id":"5003440&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+
+          ]
+        },
+        {
+          "username":"dkoch",
+          "comment":"IANAL, but there was a landmark case where the NBA sued Motorola and STATS Inc. for distributing live game statistics. The ruling ended up in favor of STATS, where the decision was pure facts could not be copyrighted.",
+          "id":"5003584",
+          "grayedOutPercent":0,
+          "reply_id":"5003584&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+
+          ]
+        },
+        {
+          "username":"kodablah",
+          "comment":"The NFL is not near as strict as MLB (note how you never see an MLB highlight on youtube?) yet MLB allows http:\/\/retrosheet.org\/ to exist. I don't believe it's technically \\\"dissemination\\\".__BR__Edit: I should note that even http:\/\/gdx.mlb.com\/components\/game\/mlb\/ contents are governed by http:\/\/gdx.mlb.com\/components\/copyright.txt which doesn't allow commercial use.",
+          "id":"5003339",
+          "grayedOutPercent":0,
+          "reply_id":"5003339&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"3 hours ago",
+          "children":[
+            {
+              "username":"corin_",
+              "comment":"MLB are extremely strict, but it's an exaggeration to say \\\"you never see highlights on youtube\\\", I've watched them there many times. Likely either before they got taken down or because they were to small to care about, but there'll still be plenty on there. 5 second search brought up https:\/\/www.youtube.com\/watch?v=OZW7448mh94 right away as a very quick example.",
+              "id":"5004127",
+              "grayedOutPercent":0,
+              "reply_id":"5004127&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"53 minutes ago",
+              "children":[
+
+              ]
+            }
+          ]
+        },
+        {
+          "username":"frozenport",
+          "comment":"Lets pretend he got it from memory.",
+          "id":"5003708",
+          "grayedOutPercent":0,
+          "reply_id":"5003708&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+
+          ]
+        }
+      ]
+    },
+    {
+      "username":"danso",
+      "comment":"This looks like great fun...Judging by some of the sample entries, it will also be an instructive example of the limitations of CSV and why serious analysts who want to work with unstructured data need to know a scripting language, or at least regexes.__BR__Sample description field:&amp;#62; 20020905_SF@NYG,1,59,20,NYG,SF,3,11,81,(14:20) (Shotgun) K.Collins pass intended for T.Barber INTERCEPTED by T.Parrish (M.Rumph) at NYG 29. T.Parrish to NYG 23 for 6 yards (T.Barber).,0,0,2002__BR__In the comments section of the OP, someone posted this sample Excel function:__BR__     =IF(ISNUMBER(SEARCH(\\\"right   tackle\\\",J2)),\\\"rush\\\",IF(ISNUMBER(SEARCH(\\\"right guard\\\",J2)),\\\"rush\\\",IF(ISNUMBER(SEARCH(\\\"left guard\\\",J2)),\\\"rush\\\",IF(ISNUMBER(SEARCH(\\\"up                              the middle\\\",J2)),\\\"rush\\\",IF(ISNUMBER(SEARCH(\\\"left tackle\\\",J2)),\\\"rush\\\",IF(ISNUMBER(SEARCH(\\\"left end\\\",J2)),\\\"rush\\\",IF(ISNUMBER(SEARCH(\\\"right end\\\",J2)),\\\"rush\\\",IF(ISNUMBER(SEARCH(\\\"pass\\\",J2)),\\\"pass\\\",IF(ISNUMBER(SEARCH(\\\"kneel\\\",J2)),\\\"kneel\\\",IF(ISNUMBER(SEARCH(\\\"punt\\\",J2)),\\\"punt\\\",IF(ISNUMBER(SEARCH(\\\"kicks\\\",J2)),\\\"kickoff\\\",IF(ISNUMBER(SEARCH(\\\"extra point\\\",J2)),\\\"extrapoint\\\",IF(ISNUMBER(SEARCH(\\\"sacked\\\",J2)),\\\"sack\\\",IF(ISNUMBER(SEARCH(\\\"PENALTY\\\",J2)),\\\"penalty\\\",IF(ISNUMBER(SEARCH(\\\"field goal\\\",J2)),\\\"fieldgoal\\\",IF(ISNUMBER(SEARCH(\\\"FUMBLES\\\",J2)),\\\"fumble\\\",IF(ISNUMBER(SEARCH(\\\"spiked\\\",J2)),\\\"spike\\\",IF(ISNUMBER(SEARCH(\\\"scrambles\\\",J2)),\\\"rush\\\",\\\"rush\\\"))))))))))))))))))Dear god, at what point do people finally realize that it's worth learning some simple scripting to work with text files?",
+      "id":"5003931",
+      "grayedOutPercent":0,
+      "reply_id":"5003931&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"1 hour ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"petersalas",
+      "comment":"This seems like as good a time as any to share something I've been working on which uses the same source data, even though it's pretty rough at the moment (slow, bad data, only currently goes through week 8 of 2012, etc.):__BR__http:\/\/nfl-query.herokuapp.com\/__BR__The basic syntax is [stats] [conditions] : [row] \/ [column].__BR__There's some autocompletion to try to make it possible to discover what is accepted.__BR__Examples:__BR__passing yards : team \/ season__BR__first downs \/ first down attempts : down \/ distance__BR__rushing yards min 100 rushing yards : player, game, quarter__BR__rushing yards \/ carries min 200 carries : player__BR__One of the biggest problems is that it's currently way too easy to shoot yourself in the foot by making a really slow query.",
+      "id":"5004259",
+      "grayedOutPercent":0,
+      "reply_id":"5004259&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"32 minutes ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"ImJasonH",
+      "comment":"I've started uploading these CSVs to a public Google BigQuery dataset called [nfl], so you can run queries over them like this:__BR__    SELECT off, COUNT(off) AS count    FROM [nfl.2012reg]    WHERE description CONTAINS \\\"INTERCEPTED\\\"    GROUP BY off    ORDER BY count DESC(This counts the number of plays that resulted in an interception by the team that threw the interception, sorted from most to fewest INTs)",
+      "id":"5003674",
+      "grayedOutPercent":0,
+      "reply_id":"5003674&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"2 hours ago",
+      "children":[
+        {
+          "username":"danvoell",
+          "comment":"I'm new to BigQuery, how do I access a public dataset? I ran the query and got the error Not Found: Dataset 578707073226:nfl",
+          "id":"5003747",
+          "grayedOutPercent":0,
+          "reply_id":"5003747&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"1 hour ago",
+          "children":[
+            {
+              "username":"ImJasonH",
+              "comment":"Sorry, I didn't actually make it public it seems. Should work now.",
+              "id":"5003794",
+              "grayedOutPercent":0,
+              "reply_id":"5003794&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"1 hour ago",
+              "children":[
+                {
+                  "username":"danvoell",
+                  "comment":"thanks!",
+                  "id":"5003843",
+                  "grayedOutPercent":0,
+                  "reply_id":"5003843&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+                  "time":"1 hour ago",
+                  "children":[
+
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "username":"snake_plissken",
+          "comment":"mean reversion between ints for NFL live betting on next int?  i smell greenbacks!",
+          "id":"5003947",
+          "grayedOutPercent":0,
+          "reply_id":"5003947&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"1 hour ago",
+          "children":[
+
+          ]
+        }
+      ]
+    },
+    {
+      "username":"nchuhoai",
+      "comment":"For my ML class, I used this dataset to play around with predicting plays. Im obviously no expert, but wanted to share my report anyways:__BR__https:\/\/www.dropbox.com\/s\/cy04oxaq83mxvoz\/report.pdf",
+      "id":"5004293",
+      "grayedOutPercent":0,
+      "reply_id":"5004293&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"27 minutes ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"euroclydon",
+      "comment":"How many of you are thinking right now: I'm going to generate an HTML page for every game and throw ads on it? Be Honest!",
+      "id":"5003274",
+      "grayedOutPercent":0,
+      "reply_id":"5003274&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"3 hours ago",
+      "children":[
+        {
+          "username":"DanBC",
+          "comment":"Is anyone going to try a 'moneyball' style Fix_Your_Fantasy_League_LineUp site with ads?",
+          "id":"5003426",
+          "grayedOutPercent":0,
+          "reply_id":"5003426&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+            {
+              "username":"404error",
+              "comment":"I might try to use the data to create mock drafts.",
+              "id":"5004083",
+              "grayedOutPercent":0,
+              "reply_id":"5004083&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"1 hour ago",
+              "children":[
+
+              ]
+            }
+          ]
+        },
+        {
+          "username":"pinchyfingers",
+          "comment":"hush :)",
+          "id":"5003338",
+          "grayedOutPercent":0,
+          "reply_id":"5003338&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"3 hours ago",
+          "children":[
+
+          ]
+        }
+      ]
+    },
+    {
+      "username":"eel",
+      "comment":"FYI, for baseball fans, you can get similar data about each play in the MLB from http:\/\/www.retrosheet.org",
+      "id":"5004352",
+      "grayedOutPercent":0,
+      "reply_id":"5004352&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"16 minutes ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"bdittmer",
+      "comment":"Now all we need is some historical line &amp;#38; associated movement data...",
+      "id":"5004298",
+      "grayedOutPercent":0,
+      "reply_id":"5004298&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"26 minutes ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"kevinburke",
+      "comment":"I wrote a small wrapper around the 4th down calculator on that site, which should help you figure out if your team should go for it on 4th down:__BR__http:\/\/downanddistance.herokuapp.com\/",
+      "id":"5003511",
+      "grayedOutPercent":0,
+      "reply_id":"5003511&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"2 hours ago",
+      "children":[
+        {
+          "username":"stuff4ben",
+          "comment":"Need a bounds check or two in there. Tried setting the number of yards you need to 1 and the yards away from the endzone to 99 and it threw up a nice exception. Cool calculator though!",
+          "id":"5003698",
+          "grayedOutPercent":0,
+          "reply_id":"5003698&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+            {
+              "username":"brianbreslin",
+              "comment":"As a Madden (game) aficionado my first thought was \\\"ALWAYS go for it on 4th!\\\" but then again I play super recklessly...",
+              "id":"5003795",
+              "grayedOutPercent":0,
+              "reply_id":"5003795&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"1 hour ago",
+              "children":[
+
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "username":"gavinlynch",
+      "comment":"Amazing!!! Thanks to www.advancednflstats.com for doing all the leg-work. Highly recommend their site too. Their in-game win probability statistics are always a must-have for me on game-day ^_^",
+      "id":"5003379",
+      "grayedOutPercent":0,
+      "reply_id":"5003379&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"3 hours ago",
+      "children":[
+        {
+          "username":"tghw",
+          "comment":"I really like his 4th Down analysis:__BR__http:\/\/www.advancednflstats.com\/2009\/09\/4th-down-study-part-...__BR__The tl;dr version can be found at:__BR__http:\/\/www.advancednflstats.com\/2010\/05\/4th-down-briefs.html__BR__The conclusion is that teams should go for it on 4th down much more often than they currently do.__BR__He also has a calculator where you can get the exact values:__BR__http:\/\/wp.advancednflstats.com\/4thdncalc1.php",
+          "id":"5003429",
+          "grayedOutPercent":0,
+          "reply_id":"5003429&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"2 hours ago",
+          "children":[
+            {
+              "username":"yukoncornelius",
+              "comment":"The Patriots have used this analysis:__BR__http:\/\/www.math.toronto.edu\/mpugh\/Teaching\/Sci199_03\/Footbal...__BR__I also believe Belichek\/Adams have funded some football economics research.",
+              "id":"5003741",
+              "grayedOutPercent":0,
+              "reply_id":"5003741&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+              "time":"1 hour ago",
+              "children":[
+
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "username":"p4bl0",
+      "comment":"As a French not interested in sports at all this would have made no sense at all to me before I watched the TV series The League [1]. Now I kind of enjoy the fact that these stats exist and are available in an open format, even if I don't really care myself.__BR__[1] http:\/\/www.imdb.com\/title\/tt1480684\/",
+      "id":"5003726",
+      "grayedOutPercent":0,
+      "reply_id":"5003726&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"2 hours ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"jredwards",
+      "comment":"I've used data from Brian Burke's site before. I think it's the exact PBP data the NFL has, but you'll find that the structure and common phrasings change over the years. I had to write a lot of regular expressions and I was still catching edge cases for weeks.__BR__btw, pro-football-reference has pbp data now too, and it probably goes back a lot further, but I think they discourage mass scraping of their site.",
+      "id":"5003952",
+      "grayedOutPercent":0,
+      "reply_id":"5003952&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"1 hour ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"ScottWhigham",
+      "comment":"The comments on that are awesome too - great advice for parsing, categorizing, and such. I couldn't download 2010 though - \\\"Sorry, we are unable to generate a view of the document at this time. Please try again later.\\\"",
+      "id":"5003201",
+      "grayedOutPercent":0,
+      "reply_id":"5003201&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"3 hours ago",
+      "children":[
+        {
+          "username":"ScottWhigham",
+          "comment":"If you click the little down arrow (top left), it will download the file. Just a heads-up in case others see this message as well.",
+          "id":"5003206",
+          "grayedOutPercent":0,
+          "reply_id":"5003206&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+          "time":"3 hours ago",
+          "children":[
+
+          ]
+        }
+      ]
+    },
+    {
+      "username":"winstonian",
+      "comment":"Would be great if there were columns:__BR__Head Coach- Offensive Coordinator- Defensive Coordinator- Formation- Play",
+      "id":"5004014",
+      "grayedOutPercent":0,
+      "reply_id":"5004014&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"1 hour ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"activus",
+      "comment":"It would be interesting to take this data and build an app around it for fantasy football.  If you have all the tendencies, and how players like your player have played against certain teams, you could make better guesses on who to play.",
+      "id":"5004222",
+      "grayedOutPercent":0,
+      "reply_id":"5004222&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"38 minutes ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"asc76",
+      "comment":"Wow. Simply. Wow.",
+      "id":"5004028",
+      "grayedOutPercent":36,
+      "reply_id":"5004028&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"1 hour ago",
+      "children":[
+
+      ]
+    },
+    {
+      "username":"mcs",
+      "comment":"wow",
+      "id":"5003933",
+      "grayedOutPercent":36,
+      "reply_id":"5003933&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
+      "time":"1 hour ago",
+      "children":[
+
+      ]
+    }
+  ]
+}

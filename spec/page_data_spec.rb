@@ -53,7 +53,7 @@ module HackerTerm
 
     describe 'calculating stats' do
       before(:each) do
-        @page_data = HackerTerm::PageData.new File.read './data/data.json' 
+        @page_data = PageData.new File.read './data/data.json' 
       end
 
       it 'provides a mean' do
@@ -71,7 +71,7 @@ module HackerTerm
     
     describe 'formatting URLs' do
       before(:each) do
-        @pg = HackerTerm::PageData.new File.read './data/data.json'
+        @pg = PageData.new File.read './data/data.json'
       end
       
       it 'provides a URL for actual article' do
