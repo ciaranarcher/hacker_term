@@ -55,6 +55,10 @@ module HackerTerm
     def selected_url
       @data[@line_pos - 1]['url']
     end
+    
+    def selected_comments_url
+      "http://news.ycombinator.com/item?id=" + @data[@line_pos - 1]['item_id']
+    end
 
     private
 

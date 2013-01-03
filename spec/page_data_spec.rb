@@ -68,6 +68,20 @@ module HackerTerm
         @page_data.mode_score.should == 0
       end
     end
+    
+    describe 'selected urls for listing' do
+      before(:each) do
+        @pg = HackerTerm::PageData.new File.read './data/data.json'
+      end
+      
+      it 'provides an url for post' do
+        @pg.selected_url.should == "http://powwow.cc/"
+      end
+      
+      it 'provides an url for comments of post' do
+        @pg.selected_comments_url.should == "http://news.ycombinator.com/item?id=4924763"
+      end
+    end
 
     describe 'sorting' do
       before(:each) do

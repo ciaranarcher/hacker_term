@@ -35,7 +35,10 @@ module HackerTerm
           @page.change_line_pos :up
 
         when "O"
-          launch
+          open_link(@page.selected_url)
+          
+        when "D"
+          open_link(@page.selected_comments_url)
         
         when "A"
           load
@@ -63,13 +66,13 @@ module HackerTerm
 
     private
 
-    def launch
+    def open_link(url)
       # Attempts to launch a browser; writes URL to clipboard in any case
       begin
-        Launchy.open @page.selected_url # May not work in some Linux flavors
+        Launchy.open url # May not work in some Linux flavors
       rescue
       ensure
-        Clipboard.copy @page.selected_url
+        Clipboard.copy url
       end
     end
 
