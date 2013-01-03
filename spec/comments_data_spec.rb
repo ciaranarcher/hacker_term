@@ -33,25 +33,8 @@ module HackerTerm
       end
 
       it 'splits a long line into fixed width lines preserving words' do
-        data = %{
-          {
-            "items":[
-              {
-                "username":"tghw",
-                "comment":"#{lorem}",
-                "id":"5003378",
-                "grayedOutPercent":0,
-                "reply_id":"5003378&amp;whence=%69%74%65%6d%3f%69%64%3d%35%30%30%32%39%37%34",
-                "time":"3 hours ago",
-                "children":[
-
-                ]
-              }
-            ]
-          }
-        }
-        comments = CommentsData.new data
-        p comments.data
+        comments = CommentsData.new many_comments
+        p comments.fit_words_to_width(lorem.split(' '), 80).split("\n").length.should == 8
       end
     end
   end
