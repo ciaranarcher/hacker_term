@@ -51,44 +51,39 @@ module HackerTerm
 
     end
 
-    describe 'format urls' do
-      before :each do 
-        @data = 
-        '{"items":[
-          {
-            "title": "Ask HN: Who is hiring? (January 2013)",
-            "url": "item?id=4992617",
-            "score": "175 points",
-            "user": "whoishiring",
-            "comments": "140 comments",
-            "time": "11 hours ago",
-            "item_id": "4992617",
-            "description": "175 points points by whoishiring 11 hours ago | 140 comments"
-          }
-        ]}'
-        @pd = PageData.new @data
-      end
-
-      it 'link to HN if url is not external' do
-        @pd.data.first['url'].should == 'http://news.ycombinator.com/item?id=4992617'
-      end
-    end
-
     describe 'calculating stats' do
       before(:each) do
         @page_data = HackerTerm::PageData.new File.read './data/data.json' 
       end
 
       it 'provides a mean' do
-        @page_data.mean_score.should == 194.19354838709677
+        @page_data.mean_score.should == 193.59375
       end
 
       it 'provides a median' do
-        @page_data.median_score.should == 131
+        @page_data.median_score.should == 135.0
       end
 
       it 'provides a mode' do
         @page_data.mode_score.should == 0
+      end
+    end
+    
+    describe 'formatting URLs' do
+      before(:each) do
+        @pg = HackerTerm::PageData.new File.read './data/data.json'
+      end
+      
+      it 'provides a URL for actual article' do
+        @pg.selected_url.should == "http://powwow.cc/"
+      end
+      
+      it 'provides a URL for article comments' do
+        @pg.selected_comments_url.should == "http://news.ycombinator.com/item?id=4924763"
+      end
+
+      it 'links to HN directly if URL is not absolute' do
+        @pg.data.last['url'].should == 'http://news.ycombinator.com/item?id=4992617'
       end
     end
 

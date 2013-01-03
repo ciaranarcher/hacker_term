@@ -52,7 +52,8 @@ module HackerTerm
       output_divider(next_line_num) 
       attrset color_pair(1)
       output_line(next_line_num, "HACKER NEWS TERMINAL - thanks to http://hndroidapi.appspot.com") 
-      output_line(next_line_num, "COMMANDS: Select (Arrows), Open (O), Refresh (A) | Sort by Rank (R), Score (S), Comments (C), Title (T) | Quit (Q)")
+      output_line(next_line_num, "CMDS: Select (Arrows), Open Item (O), Open Item Discussion (D), Refresh (A)")
+      output_line(next_line_num, "CMDS CONT: Sort by Rank (R), Score (S), Comments (C), Title (T) | Quit (Q)")
       output_divider(next_line_num) 
 
       # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
