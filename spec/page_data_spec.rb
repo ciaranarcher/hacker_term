@@ -2,7 +2,7 @@ require 'hacker_term/page_data'
 
 module HackerTerm
   describe PageData do
-    describe 'replace missing nodes and format numbers' do
+    describe 'formatting JSON' do
       before(:each) do
         @data = 
         '{"items":[
@@ -12,7 +12,7 @@ module HackerTerm
            "description":"hn next id news2 "
           },
           {
-           "title":"Ray Kurzweil joins Google",
+           "title":"Ray Kurzweil joins Google &amp;",
            "url":"http://www.kurzweilai.net/kurzweil-joins-google-to-work-on-new-projects-involving-machine-learning-and-language-processing?utm_source=twitterfeed&utm_medium=twitter",
            "score":"260 points",
            "user":"dumitrue",
@@ -47,6 +47,10 @@ module HackerTerm
 
       it 'formats comments node as a number when text is present' do
         @pd.data.last['comments'].should == '122'
+      end
+
+      it 'unescapes HTML entities in title where present' do
+        @pd.data.last['title'].should_not match /&amp;/
       end
 
     end

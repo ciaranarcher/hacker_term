@@ -1,4 +1,5 @@
 require 'json'
+require 'cgi'
 
 # Controversial monkeypatch of String class so it can tell us if a string is a number
 class String
@@ -12,7 +13,8 @@ module HackerTerm
     attr_reader :data, :mean_score, :median_score, :mode_score, :sorted_by, :line_pos
 
     def initialize(data)
-      @data = JSON.parse(data)['items']
+      unescaped = CGI.unescapeHTML data
+      @data = JSON.parse(unescaped)['items']
       
       add_missing_keys!
       format_numbers!
