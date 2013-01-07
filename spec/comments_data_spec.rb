@@ -6,8 +6,6 @@ module HackerTerm
 
       it 'creates an array of comments' do
         comments = CommentsData.new File.read './data/comments.json'
-<<<<<<< HEAD
-        p comments.data
         comments.data.should be_instance_of Array
       end
 
@@ -30,9 +28,6 @@ module HackerTerm
 
         comments = CommentsData.new data
         comments.data.first['comment'].should_not match /&amp;/ 
-=======
-        comments.data.should be_instance_of Hash
->>>>>>> 7e1ec95... Parsing comments data
       end
     end
   end
