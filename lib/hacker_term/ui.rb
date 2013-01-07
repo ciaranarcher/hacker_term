@@ -48,26 +48,37 @@ module HackerTerm
       addstr('-' * @total_width)
     end
 
-    def draw_header
-      output_divider(next_line_num) 
-      attrset color_pair(1)
-      output_line(next_line_num, "HACKER NEWS TERMINAL - thanks to http://hndroidapi.appspot.com") 
-      output_line(next_line_num, "CMDS: Select (Arrows), Open Item (O), Open Item Discussion (D), Refresh (A)")
-      output_line(next_line_num, "CMDS CONT: Sort by Rank (R), Score (S), Comments (C), Title (T) | Quit (Q)")
-      output_divider(next_line_num) 
+    def <<(str)
+      throw 'invalid type' unless str.is_a? String
+      output_line(next_line_num, str) 
+    end
 
-      # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
-      # Once obtained, pad out the title column with the any width remaining
-      # A nicer way to do this is always put the title last, and assume last column gets
-      # remaining width. That way we can just loop through our cols, rather than hardcoding
-      # them as per example below. I'm sticking to this because I want the title listed second.
-      width_excl_title = @cols.inject(0) do |width, col| 
-        width += (3 + col.length)
+    def output(&blk)
+      blk.call self if block_given?
+    end
+
+    def draw_header
+      output do |buff|
+        output_divider(next_line_num) 
+        attrset color_pair(1)
+        buff << "HACKER NEWS TERMINAL - thanks to http://hndroidapi.appspot.com"
+        buff << "CMDS: Select (Arrows), Open Item (O), Open Item Discussion (D), Refresh (A)"
+        buff << "CMDS CONT: Sort by Rank (R), Score (S), Comments (C), Title (T) | Quit (Q)"
+        output_divider(next_line_num) 
+
+        # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
+        # Once obtained, pad out the title column with the any width remaining
+        # A nicer way to do this is always put the title last, and assume last column gets
+        # remaining width. That way we can just loop through our cols, rather than hardcoding
+        # them as per example below. I'm sticking to this because I want the title listed second.
+        width_excl_title = @cols.inject(0) do |width, col| 
+          width += (3 + col.length)
+        end
+        attrset color_pair(2)
+        @title_width = @total_width - width_excl_title + 'title'.length
+        buff << "RANK | TITLE " + " " * (@total_width - width_excl_title) + "| SCORE | COMMENTS"
+        output_divider(next_line_num) 
       end
-      attrset color_pair(2)
-      @title_width = @total_width - width_excl_title + 'title'.length
-      output_line(next_line_num, "RANK | TITLE " + " " * (@total_width - width_excl_title) + "| SCORE | COMMENTS")
-      output_divider(next_line_num) 
     end
 
     def draw_footer(sorted_by, mean, median, mode)
