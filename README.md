@@ -33,4 +33,4 @@ This project was created to allow me to scratch a particular programming itch af
 
 Please enjoy/contribute/ignore as you see fit.
 
-[![Build Status](https://travis-ci.org/ciaranarcher/hacker_term.png)](https://travis-ci.org/ciaranarcher/hacker_term)i
+[![Build Status](https://travis-ci.org/ciaranarcher/hacker_term.png)](https://travis-ci.org/ciaranarcher/hacker_term)
