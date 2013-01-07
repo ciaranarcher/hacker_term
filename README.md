@@ -32,3 +32,5 @@ Background
 This project was created to allow me to scratch a particular programming itch after reading about https://github.com/etsy/mctop. It brought me back to my days in college coding in C where everything was a terminal program!
 
 Please enjoy/contribute/ignore as you see fit.
+
+[![Build Status](https://travis-ci.org/ciaranarcher/hacker_term.png)](https://travis-ci.org/ciaranarcher/hacker_term)i
