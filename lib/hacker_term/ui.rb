@@ -53,18 +53,22 @@ module HackerTerm
       output_line(next_line_num, str) 
     end
 
+    def divider
+      output_divider(next_line_num) 
+    end
+
     def output(&blk)
       blk.call self if block_given?
     end
 
     def draw_header
       output do |buff|
-        output_divider(next_line_num) 
+        buff.divider
         attrset color_pair(1)
         buff << "HACKER NEWS TERMINAL - thanks to http://hndroidapi.appspot.com"
         buff << "CMDS: Select (Arrows), Open Item (O), Open Item Discussion (D), Refresh (A)"
         buff << "CMDS CONT: Sort by Rank (R), Score (S), Comments (C), Title (T) | Quit (Q)"
-        output_divider(next_line_num) 
+        buff.divider
 
         # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
         # Once obtained, pad out the title column with the any width remaining
@@ -77,7 +81,7 @@ module HackerTerm
         attrset color_pair(2)
         @title_width = @total_width - width_excl_title + 'title'.length
         buff << "RANK | TITLE " + " " * (@total_width - width_excl_title) + "| SCORE | COMMENTS"
-        output_divider(next_line_num) 
+        buff.divider
       end
     end
 
