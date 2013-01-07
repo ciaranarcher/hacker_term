@@ -86,33 +86,29 @@ module HackerTerm
     end
 
     def draw_footer(sorted_by, mean, median, mode)
-      output_divider(next_line_num) 
-      attrset color_pair(1)
-      formatted = sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
-        sorted_by, mean, median, mode)
-      output_line(next_line_num, formatted)
-      output_divider(next_line_num) 
+      output do |buff|
+        buff.divider
+        attrset color_pair(1)
+        buff << sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
+          sorted_by, mean, median, mode)
+        buff.divider
+      end
     end
 
     def draw_item_line(rank, data, selected)
+      # Truncate if too long
+      title = truncate_line! data
 
-      begin
-        # Truncate if too long
-        title = truncate_line! data
-
-        # Format and output
-        if selected
-          rank = '> ' + rank
-          attrset color_pair(3)
-        else
-          attrset color_pair(0)
-        end
-
-        formatted = sprintf("%4s | %-#{@title_width}s | %5s | %8s", rank, title, data['score'], data['comments'])
-        output_line(next_line_num, formatted)
-      rescue => ex
-        p "error: #{ex.to_s}"
+      # Format and output
+      if selected
+        rank = '> ' + rank
+        attrset color_pair(3)
+      else
+        attrset color_pair(0)
       end
+
+      self << sprintf("%4s | %-#{@title_width}s | %5s | %8s", 
+        rank, title, data['score'], data['comments'])
     end
 
     def truncate_line!(data)
