@@ -14,6 +14,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency('rest-client')
   gem.add_dependency('launchy')
   gem.add_dependency('clipboard')
+  gem.add_development_dependency('rspec')
   
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
