@@ -13,19 +13,27 @@ module HackerTerm
     attr_reader :data, :mean_score, :median_score, :mode_score, :sorted_by, :line_pos
 
     def initialize(data)
-      unescaped = CGI.unescapeHTML data
-      @data = JSON.parse(unescaped)['items']
+      begin 
+        @data = JSON.parse(data)['items']
+      rescue JSON::ParserError
+        raise "JSON appears to be malformed: #{unescaped}" # Bomb out for now...
+      end
       
       add_missing_keys!
       format_numbers!
       format_urls!
-      
+      unescape_titles!
+            
       calculate_mean_score
       calculate_median_score
       calculate_mode_score
 
       @sorted_by = 'RANK'
       @line_pos = 1
+    end
+
+    def unescape_titles!
+      @data.each { |row| row['title'] = CGI.unescapeHTML(row['title']) }
     end
 
     def sort_on!(mode)
