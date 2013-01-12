@@ -48,56 +48,67 @@ module HackerTerm
       addstr('-' * @total_width)
     end
 
-    def draw_header
-      output_divider(next_line_num) 
-      attrset color_pair(1)
-      output_line(next_line_num, "HACKER NEWS TERMINAL - thanks to http://hndroidapi.appspot.com") 
-      output_line(next_line_num, "CMDS: Select (Arrows), Open Item (O), Open Item Discussion (D), Refresh (A)")
-      output_line(next_line_num, "CMDS CONT: Sort by Rank (R), Score (S), Comments (C), Title (T) | Quit (Q)")
-      output_divider(next_line_num) 
+    def <<(str)
+      throw 'invalid type' unless str.is_a? String
+      output_line(next_line_num, str) 
+    end
 
-      # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
-      # Once obtained, pad out the title column with the any width remaining
-      # A nicer way to do this is always put the title last, and assume last column gets
-      # remaining width. That way we can just loop through our cols, rather than hardcoding
-      # them as per example below. I'm sticking to this because I want the title listed second.
-      width_excl_title = @cols.inject(0) do |width, col| 
-        width += (3 + col.length)
-      end
-      attrset color_pair(2)
-      @title_width = @total_width - width_excl_title + 'title'.length
-      output_line(next_line_num, "RANK | TITLE " + " " * (@total_width - width_excl_title) + "| SCORE | COMMENTS")
+    def divider
       output_divider(next_line_num) 
+    end
+
+    def output(&blk)
+      blk.call self if block_given?
+    end
+
+    def draw_header
+      output do |buff|
+        buff.divider
+        attrset color_pair(1)
+        buff << "HACKER NEWS TERMINAL - thanks to http://hndroidapi.appspot.com"
+        buff << "CMDS: Select (Arrows), Open Item (O), Open Item Discussion (D), Refresh (A)"
+        buff << "CMDS CONT: Sort by Rank (R), Score (S), Comments (C), Title (T) | Quit (Q)"
+        buff.divider
+
+        # Get width_excl_title, i.e. width of all columns + some extra for |'s and spacing.
+        # Once obtained, pad out the title column with the any width remaining
+        # A nicer way to do this is always put the title last, and assume last column gets
+        # remaining width. That way we can just loop through our cols, rather than hardcoding
+        # them as per example below. I'm sticking to this because I want the title listed second.
+        width_excl_title = @cols.inject(0) do |width, col| 
+          width += (3 + col.length)
+        end
+        attrset color_pair(2)
+        @title_width = @total_width - width_excl_title + 'title'.length
+        buff << "RANK | TITLE " + " " * (@total_width - width_excl_title) + "| SCORE | COMMENTS"
+        buff.divider
+      end
     end
 
     def draw_footer(sorted_by, mean, median, mode)
-      output_divider(next_line_num) 
-      attrset color_pair(1)
-      formatted = sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
-        sorted_by, mean, median, mode)
-      output_line(next_line_num, formatted)
-      output_divider(next_line_num) 
+      output do |buff|
+        buff.divider
+        attrset color_pair(1)
+        buff << sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
+          sorted_by, mean, median, mode)
+        buff.divider
+      end
     end
 
     def draw_item_line(rank, data, selected)
+      # Truncate if too long
+      title = truncate_line! data
 
-      begin
-        # Truncate if too long
-        title = truncate_line! data
-
-        # Format and output
-        if selected
-          rank = '> ' + rank
-          attrset color_pair(3)
-        else
-          attrset color_pair(0)
-        end
-
-        formatted = sprintf("%4s | %-#{@title_width}s | %5s | %8s", rank, title, data['score'], data['comments'])
-        output_line(next_line_num, formatted)
-      rescue => ex
-        p "error: #{ex.to_s}"
+      # Format and output
+      if selected
+        rank = '> ' + rank
+        attrset color_pair(3)
+      else
+        attrset color_pair(0)
       end
+
+      self << sprintf("%4s | %-#{@title_width}s | %5s | %8s", 
+        rank, title, data['score'], data['comments'])
     end
 
     def truncate_line!(data)

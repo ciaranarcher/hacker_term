@@ -34,7 +34,7 @@ module HackerTerm
 
       it 'splits a long line into fixed width lines preserving words' do
         comments = CommentsData.new many_comments
-        p comments.fit_words_to_width(lorem.split(' '), 80).split("\n").length.should == 8
+        comments.fit_words_to_width(lorem.split(' '), 80).split("\n").length.should == 8
       end
     end
   end
