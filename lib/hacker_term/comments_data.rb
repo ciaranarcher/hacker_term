@@ -3,6 +3,7 @@ require 'cgi'
 
 module HackerTerm
   class CommentsData
+    include Enumerable
     attr_reader :data
 
     def initialize(data='')
@@ -47,6 +48,16 @@ module HackerTerm
       end
 
       new_lines.join
+    end
+
+    def each(&blk)
+      @data.each do |comment| 
+        blk.call({
+          :username => comment['username'],
+          :comment => comment['comment'],
+          :time =>  comment['time'],
+        }) 
+      end
     end
   end
 end

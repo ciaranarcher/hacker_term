@@ -37,8 +37,19 @@ module HackerTerm
         comments.fit_words_to_width(lorem.split(' '), 80).split("\n").length.should == 8
       end
 
-      it 'recursively formats a set of comments and replies' do
-        
+      it '#each returns a Hash representing a comment with username, comment and time filled' do
+        comments = CommentsData.new many_comments
+        comments.each do |c|
+          c.should be_instance_of Hash
+          c.should have_key :comment
+          c.should have_key :username
+          c.should have_key :time
+        end
+      end
+
+      pending 'recursively formats a set of comments and replies' do
+        comments = CommentsData.new many_comments
+        # p comments
       end
     end
   end
