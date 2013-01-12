@@ -16,7 +16,7 @@ module HackerTerm
       begin 
         @data = JSON.parse(data)['items']
       rescue JSON::ParserError
-        raise "JSON appears to be malformed: #{unescaped}" # Bomb out for now...
+        raise "JSON appears to be malformed: #{data}" # Bomb out for now...
       end
       
       add_missing_keys!
