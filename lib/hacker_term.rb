@@ -55,6 +55,9 @@ module HackerTerm
         
         when "C"
           @page.sort_on!(:comments)
+
+        when "Z"
+          show_comments(@page.selected_item_id)
         end
 
         clear_and_show
@@ -65,6 +68,13 @@ module HackerTerm
     end
 
     private
+
+    def show_comments(item_id)
+      comments_json = read_comments_json(item_id)
+      # TODO: need to draw a window here, and we still need to sort out comment replies
+      p comments_json
+      exit
+    end
 
     def open_link(url)
       # Attempts to launch a browser; writes URL to clipboard in any case
@@ -79,6 +89,12 @@ module HackerTerm
     def load
       @page = PageData.new @raw_json
       @ui = UI.new
+    end
+
+    def read_comments_json(item_id)
+      local_proxy = get_local_proxy
+      RestClient.proxy = local_proxy unless local_proxy.nil?
+      RestClient.get "http://hndroidapi.appspot.com/nestedcomments/format/json/id/#{item_id}"
     end
 
     def read_json

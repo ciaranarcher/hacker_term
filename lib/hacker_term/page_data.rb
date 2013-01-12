@@ -71,6 +71,10 @@ module HackerTerm
       "http://news.ycombinator.com/item?id=" + @data[@line_pos - 1]['item_id']
     end
 
+    def selected_item_id
+      @data[@line_pos - 1]['item_id']
+    end
+
     private
 
     def calculate_mode_score
@@ -130,6 +134,5 @@ module HackerTerm
         item['url'] = "http://news.ycombinator.com/#{item['url']}" if item['url'] =~ /^item\?id=[0-9]+/
       end
     end
-
   end
 end
