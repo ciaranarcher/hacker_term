@@ -5,9 +5,21 @@ module HackerTerm
   class CommentsData
     attr_reader :data
 
-    def initialize(data)
-      unescaped = CGI.unescapeHTML data
-      @data = JSON.parse(unescaped)['items']
+    def initialize(data='')
+      @data = []
+      return if data.empty?
+      
+      begin 
+        @data = JSON.parse(data)['items']
+      rescue JSON::ParserError
+        raise "JSON appears to be malformed: #{unescaped}" # Bomb out for now...
+      end
+
+      unescape_titles!
+    end
+
+    def unescape_titles!
+      @data.each { |row| row['comment'] = CGI.unescapeHTML(row['comment']) }
     end
 
     def data_as_text(max_width)

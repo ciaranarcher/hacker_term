@@ -33,8 +33,12 @@ module HackerTerm
       end
 
       it 'splits a long line into fixed width lines preserving words' do
-        comments = CommentsData.new many_comments
+        comments = CommentsData.new
         comments.fit_words_to_width(lorem.split(' '), 80).split("\n").length.should == 8
+      end
+
+      it 'recursively formats a set of comments and replies' do
+        
       end
     end
   end
