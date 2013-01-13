@@ -17,18 +17,26 @@ module HackerTerm
       end
 
       unescape_titles!
+      replace_breaks!
     end
 
     def unescape_titles!
       @data.each { |row| row['comment'] = CGI.unescapeHTML(row['comment']) }
     end
 
+    def replace_breaks!
+      @data.each { |row| row['comment'] = row['comment'].gsub("__BR__", "\n\n") }
+    end
+
     def data_as_text(max_width)
+      all = []
       @data.each do |line|
         # Split lines into words
         words = line['comment'].split ' '
-        fit_words_to_width(words, max_width)
+        all << fit_words_to_width(words, max_width)
       end
+
+      all.join
     end
 
     def fit_words_to_width(arr_words, max_width)

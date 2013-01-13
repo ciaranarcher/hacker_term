@@ -1,4 +1,5 @@
 require 'hacker_term/page_data'
+require 'hacker_term/comments_data'
 require 'hacker_term/ui'
 require 'rest_client'
 require 'launchy'
@@ -70,10 +71,8 @@ module HackerTerm
     private
 
     def show_comments(item_id)
-      comments_json = read_comments_json(item_id)
-      # TODO: need to draw a window here, and we still need to sort out comment replies
-      p comments_json
-      exit
+      comments = CommentsData.new(read_comments_json(item_id))
+      File.open('./data/thread.txt', 'w'){ |f| f.write(comments.data_as_text(80))}
     end
 
     def open_link(url)
