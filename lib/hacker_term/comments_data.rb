@@ -18,6 +18,11 @@ module HackerTerm
 
       unescape_titles!
       replace_breaks!
+      prepend_username!
+    end
+
+    def prepend_username!
+      @data.each { |row| row['comment'] = row['username'].strip.upcase + ': ' + row['comment'] }
     end
 
     def unescape_titles!
@@ -33,7 +38,7 @@ module HackerTerm
       @data.each do |line|
         # Split lines into words
         words = line['comment'].split ' '
-        all << fit_words_to_width(words, max_width)
+        all << "\n\n" + fit_words_to_width(words, max_width)
       end
 
       all.join

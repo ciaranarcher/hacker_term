@@ -9,7 +9,7 @@ module HackerTerm
         '{
             "items":[
               {
-                "username":"tghw",
+                "username":"ciaran",
                 "comment":"Looking through &amp; hi there. __BR__",
                 "id":"5003378",
                 "grayedOutPercent":0,
@@ -42,6 +42,13 @@ module HackerTerm
         comments.data.first['comment'].should match /\n\n/ 
       end
 
+      it 'prepends the username to the comment data' do
+        data = single_comment
+
+        comments = CommentsData.new data
+        comments.data.first['comment'].should match /CIARAN:/ 
+      end
+
       it '#fit_words_to_width splits a long line into fixed width lines preserving words' do
         comments = CommentsData.new
         comments.fit_words_to_width(lorem.split(' '), 80).split("\n").length.should == 8
@@ -51,8 +58,6 @@ module HackerTerm
         comments = CommentsData.new many_comments
         comments.data_as_text(80).should be_instance_of String
       end
-
-
 
       it '#each returns a Hash representing a comment with username, comment and time filled' do
         comments = CommentsData.new many_comments
