@@ -73,6 +73,8 @@ module HackerTerm
     def show_comments(item_id)
       comments = CommentsData.new(read_comments_json(item_id))
       File.open('./data/thread.txt', 'w'){ |f| f.write(comments.data_as_text(80))}
+      `vim ./data/thread.txt` # TODO how do I get this to open? Kinda hanging now...
+      exit
     end
 
     def open_link(url)
