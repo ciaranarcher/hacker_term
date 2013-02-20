@@ -51,7 +51,6 @@ module HackerTerm
           }
         }
         comments = CommentsData.new data
-        p comments.data
       end
     end
   end
