@@ -84,7 +84,7 @@ module HackerTerm
     def read_json
       local_proxy = get_local_proxy
       RestClient.proxy = local_proxy unless local_proxy.nil?
-      RestClient.get 'http://hndroidapi.appspot.com/news/format/json/page/'
+      RestClient.get 'http://hndroidapi.appspot.com/news/format/json/page/?appid=hackerterm&callback=&guid=1dff7ee048ec405ea10b395526e9xyz3'
     end
 
     def get_local_proxy
