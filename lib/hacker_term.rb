@@ -21,13 +21,13 @@ module HackerTerm
         when "Q"
           @ui.close
           exit
-        
+
         when "UP"
           @page.change_line_pos :down
-        
+
         when "DOWN"
           @page.change_line_pos :up
-        
+
         when "K"
           @page.change_line_pos :down
 
@@ -36,23 +36,23 @@ module HackerTerm
 
         when "O"
           open_link(@page.selected_url)
-          
+
         when "D"
           open_link(@page.selected_comments_url)
-        
+
         when "A"
           load
           @page.change_line_pos :reset
-        
+
         when "S"
           @page.sort_on!(:score)
-        
+
         when "R"
           @page.sort_on!(:rank)
-        
+
         when "T"
           @page.sort_on!(:title)
-        
+
         when "C"
           @page.sort_on!(:comments)
         end
@@ -84,7 +84,15 @@ module HackerTerm
     def read_json
       local_proxy = get_local_proxy
       RestClient.proxy = local_proxy unless local_proxy.nil?
-      RestClient.get 'http://hndroidapi.appspot.com/news/format/json/page/'
+      RestClient.get "http://hndroidapi.appspot.com/news/format/json/page/?appid=#{app_id}&guid=#{token}"
+    end
+
+    def app_id
+      "hacker_term"
+    end
+
+    def token
+      "98c64825ecc442a6b4d95a419f0f323b"
     end
 
     def get_local_proxy
