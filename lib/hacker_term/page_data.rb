@@ -13,20 +13,20 @@ module HackerTerm
     attr_reader :data, :mean_score, :median_score, :mode_score, :sorted_by, :line_pos
 
     def initialize(data)
-      begin 
+      begin
         @data = JSON.parse(data)['items']
       rescue JSON::ParserError
         raise "JSON appears to be malformed: #{unescaped}" # Bomb out for now...
       end
-      
+
       add_missing_keys!
       format_numbers!
       format_urls!
       unescape_titles!
-            
-      calculate_mean_score
-      calculate_median_score
-      calculate_mode_score
+
+      # calculate_mean_score
+      # calculate_median_score
+      # calculate_mode_score
 
       @sorted_by = 'RANK'
       @line_pos = 1
@@ -66,7 +66,7 @@ module HackerTerm
     def selected_url
       @data[@line_pos - 1]['url']
     end
-    
+
     def selected_comments_url
       "http://news.ycombinator.com/item?id=" + @data[@line_pos - 1]['item_id']
     end

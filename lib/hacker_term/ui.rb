@@ -38,7 +38,7 @@ module HackerTerm
     def output_line(line_num, data)
       setpos(line_num, 0)
       padding_right = @total_width - data.length - @padding_left
-      padding_right = 0 if padding_right < 0  
+      padding_right = 0 if padding_right < 0
       addstr((" " * @padding_left) + data + (" " * padding_right))
     end
 
@@ -50,11 +50,11 @@ module HackerTerm
 
     def <<(str)
       throw 'invalid type' unless str.is_a? String
-      output_line(next_line_num, str) 
+      output_line(next_line_num, str)
     end
 
     def divider
-      output_divider(next_line_num) 
+      output_divider(next_line_num)
     end
 
     def output(&blk)
@@ -75,7 +75,7 @@ module HackerTerm
         # A nicer way to do this is always put the title last, and assume last column gets
         # remaining width. That way we can just loop through our cols, rather than hardcoding
         # them as per example below. I'm sticking to this because I want the title listed second.
-        width_excl_title = @cols.inject(0) do |width, col| 
+        width_excl_title = @cols.inject(0) do |width, col|
           width += (3 + col.length)
         end
         attrset color_pair(2)
@@ -89,8 +89,10 @@ module HackerTerm
       output do |buff|
         buff.divider
         attrset color_pair(1)
-        buff << sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f", 
-          sorted_by, mean, median, mode)
+        # buff << sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f",
+        #   sorted_by, mean, median, mode)
+        buff << sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f",
+          sorted_by, 0, 0, 0)
         buff.divider
       end
     end
@@ -107,7 +109,7 @@ module HackerTerm
         attrset color_pair(0)
       end
 
-      self << sprintf("%4s | %-#{@title_width}s | %5s | %8s", 
+      self << sprintf("%4s | %-#{@title_width}s | %5s | %8s",
         rank, title, data['score'], data['comments'])
     end
 
@@ -119,14 +121,14 @@ module HackerTerm
     def show(page_data)
       draw_header
 
-      page_data.data.each_index do |i| 
+      page_data.data.each_index do |i|
         line_data = page_data.data.fetch(i)
-        draw_item_line(line_data['rank'], line_data, page_data.line_pos == i + 1) 
+        draw_item_line(line_data['rank'], line_data, page_data.line_pos == i + 1)
       end
 
-      draw_footer(page_data.sorted_by, 
-        page_data.mean_score, 
-        page_data.median_score, 
+      draw_footer(page_data.sorted_by,
+        page_data.mean_score,
+        page_data.median_score,
         page_data.mode_score
       )
     end
