@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hacker_term (0.1.0)
+    hacker_term (0.1.1)
       clipboard (~> 1.0)
       curses (~> 1.0)
       launchy (~> 2.4)
