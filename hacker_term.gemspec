@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency('launchy', '~> 2.4')
   gem.add_dependency('clipboard', '~> 1.0')
   gem.add_development_dependency('rspec', '~> 2.12')
+  gem.add_development_dependency('bump', '~> 0.1')
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
