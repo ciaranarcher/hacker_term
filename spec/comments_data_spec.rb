@@ -8,7 +8,7 @@ module HackerTerm
 
       it 'creates an array of comments' do
         comments = CommentsData.new many_comments
-        comments.data.should be_instance_of Array
+        expect(comments.data).to be_instance_of Array
       end
 
       it 'removes HTML entities' do
@@ -29,7 +29,7 @@ module HackerTerm
                 }'
 
         comments = CommentsData.new data
-        comments.data.first['comment'].should_not match /&amp;/ 
+        expect(comments.data.first['comment']).to_not match /&amp;/
       end
 
       it 'splits a long line into fixed width lines preserving words' do
