@@ -24,9 +24,9 @@ module HackerTerm
       format_urls!
       unescape_titles!
 
-      # calculate_mean_score
-      # calculate_median_score
-      # calculate_mode_score
+      calculate_mean_score
+      calculate_median_score
+      calculate_mode_score
 
       @sorted_by = 'RANK'
       @line_pos = 1

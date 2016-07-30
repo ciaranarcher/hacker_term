@@ -89,10 +89,8 @@ module HackerTerm
       output do |buff|
         buff.divider
         attrset color_pair(1)
-        # buff << sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f",
-        #   sorted_by, mean, median, mode)
         buff << sprintf("Sorted by: %7s | Scores: Mean: %4.2f | Median: %4.2f | Mode: %4.2f",
-          sorted_by, 0, 0, 0)
+          sorted_by, mean, median, mode)
         buff.divider
       end
     end
